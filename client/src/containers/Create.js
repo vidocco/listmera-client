@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import '../App.css';
 
 import { connect } from 'react-redux';
+import { set } from '../actions'
 
 import Header from '../components/Header';
 
 class Create extends Component {
+  constructor(props) {
+    super(props);
+    const user = JSON.parse(window.localStorage.getItem('user'));
+    if (!user) {
+      window.location = '/access';
+    }
+  }
   createPlaylist(name) {
     fetch('http://localhost:3000/api/create', {
       method: 'POST',
@@ -15,7 +23,14 @@ class Create extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-    }).catch(e => console.log(e));
+    }).then(res => res.json())
+      .then(res => {
+        this.props.set(res)
+        const user = JSON.parse(window.localStorage.getItem('user'));
+        window.localStorage.setItem('user', JSON.stringify(this.props.user));
+        window.location = `/playlist/${res.id}`
+      })
+      .catch(e => console.log(e));
   }
   render() {
     return (
@@ -44,8 +59,8 @@ const mapStateToProps = (state) => ({
   user: state,
 })
 
-// const mapDispatchToProps = (dispatch) => ({
-//   login: (user) => dispatch(login(user)),
-// })
+const mapDispatchToProps = (dispatch) => ({
+  set: (playlist) => dispatch(set(playlist)),
+})
 
-export default connect(mapStateToProps, null)(Create);
+export default connect(mapStateToProps, mapDispatchToProps)(Create);

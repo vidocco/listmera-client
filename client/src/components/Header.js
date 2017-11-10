@@ -10,6 +10,7 @@ class Header extends Component {
   }
 
   render() {
+    console.log(this.props.user);
     const login = !this.props.user.name
     ? <Link to="/access">
         <p>login</p>

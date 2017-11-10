@@ -13,13 +13,17 @@ import Main from './containers/Main';
 import Access from './containers/Access';
 import Welcome from './containers/Welcome';
 import Create from './containers/Create';
+import Playlist from './containers/Playlist';
 // import SignUp from './SignUp';
 
 class App extends Component {
   constructor(props) {
     super(props);
     const user = JSON.parse(window.localStorage.getItem('user'));
-    if (user) this.props.login(user);
+    if (user) {
+      user.picture = user.picture ? user.picture : require('./assets/music-player.png');
+      this.props.login(user);
+    }
   }
   render() {
     return (
@@ -29,6 +33,7 @@ class App extends Component {
           <Route path="/create" component={Create} />
           <Route path="/access" component={Access} />
           <Route path="/welcome" component={Welcome} />
+          <Route path="/playlist/:id" component={Playlist} />
         </div>
       </Router>
     );

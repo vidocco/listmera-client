@@ -22,7 +22,9 @@ class Welcome extends Component {
       },
     }).then(res => res.json())
       .then(res => {
+        res.name = res.name ? res.name : res.username;
         window.localStorage.setItem('user', JSON.stringify(res));
+        res.picture = res.picture ? res.picture : require('../assets/music-player.png');
         this.props.login(res);
       })
       .catch(e => console.log(e));
@@ -32,11 +34,12 @@ class Welcome extends Component {
 
   render() {
     const user = this.props.user;
+    const name = user.name ? user.name : user.username;
     return (
       <div className="Wrapper">
         <Header />
         <div className="MaxWidthCreate">
-          <h1>Welcome {user.name ? user.name : ''}</h1>
+          <h1>Welcome {name}</h1>
           <img alt="you" className="WelcomePicture" src={user.picture}/>
           <h2>We're glad to have you</h2>
         </div>
