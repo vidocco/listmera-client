@@ -15,7 +15,7 @@ class Create extends Component {
     }
   }
   createPlaylist(name) {
-    fetch('http://localhost:3000/api/create', {
+    fetch('http://localhost:3000/api/playlist', {
       method: 'POST',
       body: JSON.stringify({username: this.props.user.username, name: name}),
       mode: 'cors',
@@ -26,7 +26,6 @@ class Create extends Component {
     }).then(res => res.json())
       .then(res => {
         this.props.set(res)
-        const user = JSON.parse(window.localStorage.getItem('user'));
         window.localStorage.setItem('user', JSON.stringify(this.props.user));
         window.location = `/playlist/${res.id}`
       })

@@ -1,12 +1,12 @@
 const mongo = require('./mongo.js');
 const spotify = require('../secrets/spotifyConf.js');
-
 const findUser = require('./findUser.js');
+
 const register = require('./registerModel.js');
 const loginUser = require('./loginModel.js');
 
-const scopes = ['user-read-private', 'user-read-email'];
-const state = 'prov-state';
+// const scopes = ['user-read-private', 'user-read-email'];
+// const state = 'prov-state';
 
 async function spotifyRegister(code) {
   const db = await mongo;

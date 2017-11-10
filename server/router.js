@@ -9,7 +9,8 @@ router.get('/api/access', spotifyController.auth);
 router.post('/api/register', spotifyController.register);
 
 // playlists
-router.post('/api/create', playlistController.create);
+router.post('/api/playlist', playlistController.create);
+router.get('/api/playlist/:id', playlistController.get);
 
 // router.get('/login', userController.login);
 // router.post('/register', userController.register);
