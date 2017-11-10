@@ -11,6 +11,7 @@ async function registerUser(object) {
     playlists: object.playlists,
     refresh: object.refresh,
     token: object.token,
+    adminOf: [],
   });
   return await login(object);
 }

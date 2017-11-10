@@ -1,19 +1,22 @@
 const create = require('../models/createPlaylistModel.js');
 const engine = require('../engine/engine.js');
+const setAdmin = require('../models/userPlaylistModel.js');
 const findUser = require('../models/findUser.js');
 
 module.exports = {
   create: async function (ctx) {
     const playlist = JSON.parse(ctx.request.body);
+    console.log(playlist);
     const user = await findUser(playlist.username);
-    const tracks = engine.init(user[0].playlists);
-    //store playlist with a reference to tracks
-    await create({
+    console.log(playlist.username);
+    const finalTracks = engine.init(user[0].playlists);
+    const newPlaylist = await create({
       admin: playlist.username,
       name: playlist.name,
-      tracks: tracks,
+      tracks: finalTracks,
     });
-    console.log('inserted');
+    setAdmin({id: newPlaylist, username: playlist.username})
+    ctx.response.body = {id : newPlaylist};
     ctx.status = 200;
   }
 };

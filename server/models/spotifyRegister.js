@@ -23,7 +23,8 @@ async function spotifyRegister(code) {
     .then(async res => {
       const exist = await findUser(res.body.id);
       if (exist.length > 0) login = true;
-      newUser.picture = res.body['images'][0].url;
+      if (res.body['images'][0]) newUser.picture = res.body['images'][0].url;
+      else newUser.picture = undefined;
       newUser.email = res.body.email;
       newUser.username = res.body.id;
       newUser.name = res.body.display_name;

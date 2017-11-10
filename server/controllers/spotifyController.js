@@ -15,6 +15,7 @@ module.exports = {
       name: user[0].name,
       username: user[0].username,
       picture: user[0].picture,
+      playlists: user[0].adminOf,
     }
     ctx.status = 200;
   }
