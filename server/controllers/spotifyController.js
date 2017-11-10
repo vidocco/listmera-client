@@ -1,5 +1,5 @@
 const spotify = require('../secrets/spotifyConf.js');
-const register = require("./../models/spotifyRegister.js");
+const register = require('../models/spotifyRegister.js');
 
 const scopes = ['user-read-private', 'user-read-email'];
 const state = 'prov-state';

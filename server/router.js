@@ -2,11 +2,14 @@ const Router = require('koa-router');
 const router = new Router();
 const spotifyController = require('./controllers/spotifyController.js');
 const userController = require('./controllers/userController.js');
+const playlistController = require('./controllers/playlistController.js');
 
 // sign-up
 router.get('/api/access', spotifyController.auth);
 router.post('/api/register', spotifyController.register);
-// grab users playlists
+
+// playlists
+router.post('/api/create', playlistController.create);
 
 // router.get('/login', userController.login);
 // router.post('/register', userController.register);
