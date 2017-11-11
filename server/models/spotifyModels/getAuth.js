@@ -1,9 +1,9 @@
-const mongo = require('./mongo.js');
-const spotify = require('../secrets/spotifyConf.js');
-const findUser = require('./findUser.js');
+const mongo = require('../userModels/mongo.js');
+const spotify = require('../../secrets/spotifyConf.js');
+const findUser = require('../userModels/findUser.js');
 
-const register = require('./registerModel.js');
-const loginUser = require('./loginModel.js');
+const register = require('../userModels/registerModel.js');
+const loginUser = require('../userModels/loginModel.js');
 
 // const scopes = ['user-read-private', 'user-read-email'];
 // const state = 'prov-state';

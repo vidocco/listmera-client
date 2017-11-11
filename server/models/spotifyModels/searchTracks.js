@@ -1,4 +1,4 @@
-const spotify = require('../secrets/spotifyConf.js');
+const spotify = require('../../secrets/spotifyConf.js');
 
 async function spotifySearch(arr, refresh) {
   if (!arr.length) return [];

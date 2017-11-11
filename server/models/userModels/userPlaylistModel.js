@@ -6,6 +6,7 @@ async function setPlaylistAdmin(object) {
   await db.collection('users').update(
     { username: object.username },
     { $push: { adminOf: object.id } });
+  return 200;
 }
 
 module.exports = setPlaylistAdmin;

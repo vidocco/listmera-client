@@ -12,7 +12,7 @@ async function intersect(playlist, collabId) {
       });
     });
   });
-  resolve('done!');
+  resolve(200);
 }
 
 module.exports = intersect;

@@ -1,6 +1,6 @@
 const client = require('./redis.js');
-const search = require('./spotifySearch.js');
-const findUser = require('./findUser.js');
+const search = require('../spotifyModels/searchTracks.js');
+const findUser = require('../userModels/findUser.js');
 
 async function retrieveTrackList(id) {
   return new Promise((resolve, reject) => {

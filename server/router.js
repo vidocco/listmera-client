@@ -1,7 +1,7 @@
 const Router = require('koa-router');
 const router = new Router();
+
 const spotifyController = require('./controllers/spotifyController.js');
-const userController = require('./controllers/userController.js');
 const playlistController = require('./controllers/playlistController.js');
 
 // sign-up/log-in methods
