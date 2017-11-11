@@ -10,7 +10,8 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props.user);
+    console.log('Redux Status: ',this.props.user);
+    console.log('Local Storage: ',JSON.parse(window.localStorage.getItem('user')));
     const login = !this.props.user.name
     ? <Link to="/access">
         <p>login</p>

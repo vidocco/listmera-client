@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-import { connect } from 'react-redux';
-import { set } from '../actions'
+// import { connect } from 'react-redux';
+// import { set } from '../actions'
 
 import Header from '../components/Header';
 import Loader from '../components/Loader';
@@ -31,7 +31,6 @@ class Playlist extends Component {
   }
 
   collaborate () {
-    console.log(window.localStorage.getItem('user'));
     fetch(`http://localhost:3000/api${window.location.pathname}`, {
       method: 'PUT',
       body: window.localStorage.getItem('user'),
@@ -47,7 +46,7 @@ class Playlist extends Component {
   generate () {
     fetch(`http://localhost:3000/api${window.location.pathname}`, {
       method: 'POST',
-      // body: JSON.stringify(code),
+      body: window.localStorage.getItem('user'),
       mode: 'cors',
       header: {
         'Accept': 'application/json',
@@ -55,16 +54,16 @@ class Playlist extends Component {
       },
     }).then(res => console.log(res))
       .catch(e => console.error(e));
-    fetch(`http://localhost:3000/api${window.location.pathname}`, {
-      method: 'DELETE',
-      // body: JSON.stringify(code),
-      mode: 'cors',
-      header: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(res => console.log(res))
-      .catch(e => console.error(e));
+    // fetch(`http://localhost:3000/api${window.location.pathname}`, {
+    //   method: 'DELETE',
+    //   // body: JSON.stringify(code),
+    //   mode: 'cors',
+    //   header: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    // }).then(res => console.log(res))
+    //   .catch(e => console.error(e));
   }
 
   //========================================= RENDERING
@@ -81,9 +80,9 @@ class Playlist extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log('Playlist details: ', this.state);
     let generate = (this.state && this.state.isAdmin)
-      ? (<button className="Generate">GENERATE</button>)
+      ? (<button className="Generate" onClick={this.generate}>GENERATE</button>)
       : (<button className="Collaborate" onClick={this.collaborate}>COLLABORATE</button>);
     let extra = (this.state && this.state.tracks.length === 50) 
       ? (<p className="MoreSongs">{`... and ${this.state.length - this.state.tracks.length} songs more`}</p>)
@@ -118,12 +117,14 @@ class Playlist extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state,
-})
+// const mapStateToProps = (state) => ({
+//   user: state,
+// })
 
-const mapDispatchToProps = (dispatch) => ({
-  set: (playlist) => dispatch(set(playlist)),
-})
+// const mapDispatchToProps = (dispatch) => ({
+//   set: (playlist) => dispatch(set(playlist)),
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Playlist);
+// export default connect(null, mapDispatchToProps)(Playlist);
+
+export default Playlist

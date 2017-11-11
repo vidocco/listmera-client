@@ -1,5 +1,4 @@
 const spotify = require('../secrets/spotifyConf.js');
-const mongo = require('./mongo.js');
 
 async function spotifySearch(arr, refresh) {
   if (!arr.length) return [];
