@@ -15,21 +15,6 @@ async function spotifySearch(playlist, refresh) {
     })
     .catch(e => console.log(e));
   await spotify.addTracksToPlaylist(playlist.adminId, playlistId, tracks);
-  // console.log('=======================================================')
-  // console.log('Token Refreshed for user: ', refresh);
-  // console.log('=======================================================')
-  // console.log('About to publich playlist: ', playlist);
-  // await spotify.getTracks(arr)
-  //   .then(res => tracks = res.body.tracks)
-  //   .catch(e => console.error(e));
-  // return tracks.map(el => ({
-  //   image: el.album.images[0].url,
-  //   album: el.album.name,
-  //   artist: el.album.artists.map(el => el.name),
-  //   id: el.id,
-  //   name: el.name,
-  //   popularity: el.popularity,
-  // }));
 }
 
 module.exports = spotifySearch;

@@ -15,6 +15,4 @@ router.put('/api/playlist/:id', playlistController.collab);
 router.post('/api/playlist/:id', playlistController.generate);
 router.delete('/api/playlist/:id', playlistController.delete);
 
-// router.get('/login', userController.login);
-// router.post('/register', userController.register);
 module.exports = router;
