@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { login } from '../actions';
 
 import Header from '../components/Header';
+import Loader from '../components/Loader';
 import '../App.css';
 
 class Welcome extends Component {
@@ -25,17 +26,21 @@ class Welcome extends Component {
         res.name = res.name ? res.name : res.username;
         window.localStorage.setItem('user', JSON.stringify(res));
         res.picture = res.picture ? res.picture : require('../assets/music-player.png');
+        this.loaded = true;
         this.props.login(res);
       })
       .catch(e => console.log(e));
-  }
-
+    }
+    
+    componentWillMount() {
+    }
   //============ RENDERING
 
   render() {
+    console.log(this.state)
     const user = this.props.user;
     const name = user.name ? user.name : user.username;
-    return (
+    return this.loaded ? (
       <div className="Wrapper">
         <Header />
         <div className="MaxWidthCreate">
@@ -44,7 +49,11 @@ class Welcome extends Component {
           <h2>We're glad to have you</h2>
         </div>
       </div>
-    );
+    ) : (
+      <div className="Wrapper">
+        <Loader />
+      </div>
+    )
   }
 }
 

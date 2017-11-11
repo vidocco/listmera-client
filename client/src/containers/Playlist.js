@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { set } from '../actions'
 
 import Header from '../components/Header';
+import Loader from '../components/Loader';
 import Track from '../components/Track';
 
 class Playlist extends Component {
@@ -13,15 +14,56 @@ class Playlist extends Component {
     fetch(`http://localhost:3000/api${window.location.pathname}`)
       .then(res => res.json())
       .then(res => {
-        if (JSON.parse(window.localStorage.getItem('user')).username === res.admin) {
+        if (window.localStorage.getItem('user') && JSON.parse(window.localStorage.getItem('user')).username === res.adminId) {
           this.setState({
             ...res,
             isAdmin: true,
+            loaded: true,
           });
         } else {
-          this.setState(res);
+          this.setState({
+            ...res,
+            loaded: true,
+          });
         }
       })
+      .catch(e => console.error(e));
+  }
+
+  collaborate () {
+    console.log(window.localStorage.getItem('user'));
+    fetch(`http://localhost:3000/api${window.location.pathname}`, {
+      method: 'PUT',
+      body: window.localStorage.getItem('user'),
+      mode: 'cors',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => console.log(res))
+      .catch(e => console.error(e));
+  }
+
+  generate () {
+    fetch(`http://localhost:3000/api${window.location.pathname}`, {
+      method: 'POST',
+      // body: JSON.stringify(code),
+      mode: 'cors',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => console.log(res))
+      .catch(e => console.error(e));
+    fetch(`http://localhost:3000/api${window.location.pathname}`, {
+      method: 'DELETE',
+      // body: JSON.stringify(code),
+      mode: 'cors',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => console.log(res))
       .catch(e => console.error(e));
   }
 
@@ -42,29 +84,35 @@ class Playlist extends Component {
     console.log(this.state);
     let generate = (this.state && this.state.isAdmin)
       ? (<button className="Generate">GENERATE</button>)
-      : (<button className="Collaborate">COLLABORATE</button>);
+      : (<button className="Collaborate" onClick={this.collaborate}>COLLABORATE</button>);
     let extra = (this.state && this.state.tracks.length === 50) 
       ? (<p className="MoreSongs">{`... and ${this.state.length - this.state.tracks.length} songs more`}</p>)
       : (<p className="MoreSongs">this playlist needs a little help, why not collaborate with it?</p>)
     let tracks = this.state ? this.renderTracks(this.state.tracks) : 'waiting';
     let name = this.state ? this.state.name : 'Pending';
     let admin = this.state ? this.state.admin : 'admin';
+    let loading = this.state ? this.state.loaded : false;
     return (
       <div className="Wrapper">
         <Header />
-        <div className="MaxWidthCreate">
-          <div className="PlaylistTitleWrapper">
-            <div className="PlaylistTitle">
-              <h1>{name}</h1>
-              <p>{'created by ' + admin}</p>
+        { loading ? (
+          <div className="MaxWidthCreate">
+            <div className="PlaylistTitleWrapper">
+              <div className="PlaylistTitle">
+                <h1>{name}</h1>
+                <p>{'created by ' + admin}</p>
+              </div>
+              {generate}
             </div>
-            {generate}
+            <div className="TrackWrapper">
+              {tracks}
+            </div>
+            {extra}
           </div>
-          <div className="TrackWrapper">
-            {tracks}
-          </div>
-          {extra}
-        </div>
+        ) : (
+          <Loader />
+        )
+        }
       </div>
     );
   }

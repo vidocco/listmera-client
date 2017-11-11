@@ -4,13 +4,15 @@ const uuid = require("shortid");
 async function createPlaylist(newPlaylist) {
   const playlistId = uuid.generate();
   const trackId = uuid.generate();
+  const bankId = uuid.generate();
   let playlist = {
     admin: newPlaylist.admin,
     name: newPlaylist.name,
     tracks: trackId,
+    bank: bankId,
   };
   await client.hmset(`playlist:${playlistId}`, playlist);
-  await client.sadd(`tracks:${trackId}`, newPlaylist.tracks);
+  await client.sadd(`tracks:${bankId}`, newPlaylist.tracks);
   return playlistId;
 }
 

@@ -2,14 +2,13 @@ const spotify = require('../secrets/spotifyConf.js');
 const mongo = require('./mongo.js');
 
 async function spotifySearch(arr, refresh) {
+  if (!arr.length) return [];
   await spotify.setRefreshToken(refresh);
-  console.log('refreshed');
   await spotify.refreshAccessToken()
     .then(async data => {
       await spotify.setAccessToken(data.body['access_token']);
     })
     .catch(e => console.error(e));
-  console.log('access granted');
   let tracks = [];
   await spotify.getTracks(arr)
     .then(res => tracks = res.body.tracks)

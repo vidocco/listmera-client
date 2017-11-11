@@ -2,7 +2,7 @@ const client = require("./redis.js");
 
 //getting data
 
-async function getOldData(user) {
+async function playlistGet(user) {
   return new Promise((resolve, reject) => {
     let messages = [];
     client.keys("message:*", (err, keys) => {
@@ -18,4 +18,4 @@ async function getOldData(user) {
   });
 }
 
-module.exports = getOldData;
+module.exports = playlistGet;
