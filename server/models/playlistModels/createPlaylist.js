@@ -1,5 +1,5 @@
-const client = require("./redis.js");
-const uuid = require("shortid");
+const client = require('./redis.js');
+const uuid = require('shortid');
 
 async function createPlaylist(newPlaylist) {
   const playlistId = uuid.generate();

@@ -1,15 +1,11 @@
-const mongo = require('../userModels/mongo.js');
 const spotify = require('../../secrets/spotifyConf.js');
-const findUser = require('../userModels/findUser.js');
+
+const locate = require('../userModels/findUser.js');
 
 const register = require('../userModels/registerModel.js');
-const loginUser = require('../userModels/loginModel.js');
-
-// const scopes = ['user-read-private', 'user-read-email'];
-// const state = 'prov-state';
+const login = require('../userModels/loginModel.js');
 
 async function spotifyRegister(code) {
-  const db = await mongo;
   const newUser = {};
   let login = false;
   await spotify.authorizationCodeGrant(code)
@@ -21,7 +17,7 @@ async function spotifyRegister(code) {
   });
   await spotify.getMe()
     .then(async res => {
-      const exist = await findUser(res.body.id);
+      const exist = await locate(res.body.id);
       if (exist.length > 0) login = true;
       if (res.body['images'][0]) newUser.picture = res.body['images'][0].url;
       else newUser.picture = undefined;
@@ -29,7 +25,7 @@ async function spotifyRegister(code) {
       newUser.username = res.body.id;
       newUser.name = res.body.display_name;
     }).catch(e => console.error(e));
-  if (login) return loginUser(newUser);
+  if (login) return login(newUser);
   else {
     await spotify.getUserPlaylists(newUser.username, {limit: 50})
       .then(async res => {

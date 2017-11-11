@@ -25,11 +25,11 @@ module.exports = {
   create: async function (ctx) {
     const playlist = JSON.parse(ctx.request.body);
     const user = await locate(playlist.username);
-    const finalTracks = engine.init(user[0].playlists);
+    const trackList = engine.init(user[0].playlists);
     const newPlaylist = await create({
-      admin: playlist.username,
-      name: playlist.name,
-      tracks: finalTracks,
+      admin : playlist.username,
+      name : playlist.name,
+      tracks : trackList,
     });
     ctx.status = await setAsManager({id: newPlaylist, username: playlist.username})
     ctx.response.body = {id : newPlaylist};

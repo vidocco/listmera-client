@@ -13,8 +13,9 @@ async function spotifySearch(playlist, refresh) {
     .then(res => {
       playlistId = res.body.id;
     })
-    .catch(e => console.log(e));
-  await spotify.addTracksToPlaylist(playlist.adminId, playlistId, tracks);
+    .catch(e => console.error(e));
+  await spotify.addTracksToPlaylist(playlist.adminId, playlistId, tracks)
+    .catch(e => console.error(e));
 }
 
 module.exports = spotifySearch;
