@@ -37,7 +37,6 @@ class Welcome extends Component {
   //============ RENDERING
 
   render() {
-    console.log(this.state)
     const user = this.props.user;
     const name = user.name ? user.name : user.username;
     return this.loaded ? (

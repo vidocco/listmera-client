@@ -50,8 +50,6 @@ module.exports = {
   generate: async function (ctx) {
     const user = await locate(JSON.parse(ctx.request.body).username);
     const playlist = await get(ctx.params.id);
-    // console.log(playlist);
-    //REPARA ESTO PRIMERO DE TODO!!!!!!!!!!!!!!!
     if (user.length && user[0].username === playlist.adminId) {
       await generate(playlist, user[0].refresh)
       ctx.status = 200;
