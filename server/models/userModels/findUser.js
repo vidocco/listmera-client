@@ -7,7 +7,7 @@ async function findUser(username) {
       .find({username: username})
       .toArray((err, results) => {
         resolve(results);
-        reject(err);
+        if (err) reject(err);
       });;
   });
 }

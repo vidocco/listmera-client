@@ -25,6 +25,7 @@ class Create extends Component {
       },
     }).then(res => res.json())
       .then(res => {
+        console.log(res);
         this.props.set(res)
         window.localStorage.setItem('user', JSON.stringify(this.props.user));
         window.location = `/playlist/${res.id}`

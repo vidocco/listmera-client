@@ -7,7 +7,7 @@ const login = require('../userModels/loginModel.js');
 
 async function spotifyRegister(code) {
   const newUser = {};
-  let login = false;
+  let flag = false;
   await spotify.authorizationCodeGrant(code)
   .then(async res => {
     await spotify.setAccessToken(res.body['access_token']);
@@ -18,14 +18,14 @@ async function spotifyRegister(code) {
   await spotify.getMe()
     .then(async res => {
       const exist = await locate(res.body.id);
-      if (exist.length > 0) login = true;
+      if (exist.length > 0) flag = true;
       if (res.body['images'][0]) newUser.picture = res.body['images'][0].url;
       else newUser.picture = undefined;
       newUser.email = res.body.email;
       newUser.username = res.body.id;
       newUser.name = res.body.display_name;
     }).catch(e => console.error(e));
-  if (login) return login(newUser);
+  if (flag) return login(newUser);
   else {
     await spotify.getUserPlaylists(newUser.username, {limit: 50})
       .then(async res => {

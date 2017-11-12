@@ -11,7 +11,7 @@ const generate = require('../models/spotifyModels/createPlaylist.js');
 //create a playlist on Redis. Returns playlist id in Redis.
 const create = require('../models/playlistModels/createPlaylist.js');
 //grab a simplified version of a playlist (for display purposes only). Returns a promise that resolves to an object containing details.
-const display = require('../models/playlistModels/getPlaylistDetails.js');
+const display = require('../models/playlistModels/getDisplayPlaylist.js');
 //get all details and tracks for a specific playlist. Returns a promise that resolves to an object containing details.
 const get = require('../models/playlistModels/getPlaylistDetails.js');
 //creates a short-lived (10 secs) cache of the collaborating users tracks and returns that cache's id.
@@ -45,11 +45,13 @@ module.exports = {
     const trackId = await set(tracks);
     const playlist = await getTracks(ctx.params.id);
     ctx.status = await intersect(playlist, trackId)
-      .catch(e => e);
+      .catch(e => console.error(e));
   },
   generate: async function (ctx) {
     const user = await locate(JSON.parse(ctx.request.body).username);
     const playlist = await get(ctx.params.id);
+    // console.log(playlist);
+    //REPARA ESTO PRIMERO DE TODO!!!!!!!!!!!!!!!
     if (user.length && user[0].username === playlist.adminId) {
       await generate(playlist, user[0].refresh)
       ctx.status = 200;

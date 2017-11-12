@@ -14,6 +14,8 @@ class Playlist extends Component {
     fetch(`http://localhost:3000/api${window.location.pathname}`)
       .then(res => res.json())
       .then(res => {
+        console.log(res);
+        console.log(res);
         if (window.localStorage.getItem('user') && JSON.parse(window.localStorage.getItem('user')).username === res.adminId) {
           this.setState({
             ...res,

@@ -4,7 +4,7 @@ async function retrieveTrackList(id) {
   return new Promise((resolve, reject) => {
     client.hgetall(`playlist:${id}`, async (err, reply) => {
       resolve({bank: reply.bank, tracks: reply.tracks});
-      reject(err);
+      if (err) reject(err);
     });
   });
 }
