@@ -27,7 +27,6 @@ async function getPlaylist(id, simple) {
             return acc.sort((a,b) => b.popularity - a.popularity);
           } else return acc;  
         }, []).map(el => el.image) : undefined;
-        console.log(playlist);
         resolve(playlist);
         if (err) reject(err);
       })

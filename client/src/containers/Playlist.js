@@ -40,7 +40,7 @@ class Playlist extends Component {
         'Content-Type': 'application/json',
       },
     }).then(res => {
-      window.location.reload();
+      if (res.status === 200) window.location.reload();
     })
       .catch(e => console.error(e));
   }

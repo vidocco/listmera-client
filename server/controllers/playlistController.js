@@ -2,7 +2,7 @@ const engine = require('../engine/engine.js');
 
 //locate a specific User and return it's details.
 const locate = require('../models/userModels/findUser.js');
-//set a user as the admin user of a specific playlist. Processing function, returns 200 to show it worked correctly.
+//set a user as the admin user of a specific playlist. Processing function, returns 201 to show it worked correctly.
 const setAsManager = require('../models/userModels/userPlaylistModel.js');
 
 //push a playlist in Redis to a users spotify account.
@@ -26,7 +26,9 @@ const recent = require('../models/playlistModels/recentPlaylists.js');
 module.exports = {
   create: async function (ctx) {
     const playlist = JSON.parse(ctx.request.body);
+    console.log(playlist);
     const user = await locate(playlist.username);
+    console.log(user);
     const trackList = engine.init(user[0].playlists);
     const newPlaylist = await create({
       admin : playlist.username,
@@ -46,15 +48,16 @@ module.exports = {
     const tracks = engine.init(user[0].playlists);
     const trackId = await set(tracks);
     const playlist = await getTracks(ctx.params.id);
-    ctx.status = await intersect(playlist, trackId)
+    ctx.status = await intersect(playlist, trackId, user[0].username)
       .catch(e => console.error(e));
+    console.log(ctx.status);
   },
   generate: async function (ctx) {
     const user = await locate(JSON.parse(ctx.request.body).username);
     const playlist = await get(ctx.params.id);
     if (user.length && user[0].username === playlist.adminId) {
       await generate(playlist, user[0].refresh)
-      ctx.status = 200;
+      ctx.status = 201;
     } else if (!playlist.adminId) ctx.status = 400;
     else ctx.status = 401;
   },
