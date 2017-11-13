@@ -26,8 +26,7 @@ class Profile extends Component {
           this.setState({
             ...res,
             loaded: true,
-          })
-          console.log(res)
+          });
         })
         .catch(e => console.error(e));
     }
@@ -40,7 +39,7 @@ class Profile extends Component {
   }
 
   render() {
-    let loaded = this.state ? this.state.loaded : false;
+    const loaded = this.state ? this.state.loaded : false;
     return (
       <div className="Wrapper">
         <Header />

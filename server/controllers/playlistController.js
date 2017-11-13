@@ -20,6 +20,8 @@ const set = require('../models/playlistModels/createTrackList.js');
 const intersect = require('../models/playlistModels/intersectTracks.js');
 //retrieves all track ids for the specified playlist.
 const getTracks = require('../models/playlistModels/retrieveTrackList.js');
+//get all recently created playlists
+const recent = require('../models/playlistModels/recentPlaylists.js');
 
 module.exports = {
   create: async function (ctx) {
@@ -58,5 +60,9 @@ module.exports = {
   },
   delete: async function (ctx) {
 
+  },
+  recent: async function (ctx) {
+    ctx.response.body = await recent();
+    ctx.status = 200;
   }
 };

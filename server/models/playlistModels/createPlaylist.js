@@ -13,6 +13,7 @@ async function createPlaylist(newPlaylist) {
   };
   await client.hmset(`playlist:${playlistId}`, playlist);
   await client.sadd(`tracks:${bankId}`, newPlaylist.tracks);
+  await client.sadd('recent', playlistId);
   return playlistId;
 }
 

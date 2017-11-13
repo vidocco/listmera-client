@@ -13,8 +13,8 @@ module.exports = {
       return;
     } else {
       user[0].adminOf = await Promise.all(user[0].adminOf.map(async el => await display(el, true)));
-      console.log(user[0]);
       ctx.response.body = user[0];
+      ctx.status = 200;
     }
   }
 };

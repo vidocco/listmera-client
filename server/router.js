@@ -15,6 +15,7 @@ router.get('/api/playlist/:id', playlistController.get);
 router.put('/api/playlist/:id', playlistController.collab);
 router.post('/api/playlist/:id', playlistController.generate);
 router.delete('/api/playlist/:id', playlistController.delete);
+router.get('/api/playlists/recent', playlistController.recent);
 
 // user methods
 router.get('/api/me', userController.get);
