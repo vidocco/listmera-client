@@ -39,7 +39,9 @@ class Playlist extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(res => console.log(res))
+    }).then(res => {
+      window.location.reload();
+    })
       .catch(e => console.error(e));
   }
 
@@ -73,7 +75,7 @@ class Playlist extends Component {
       return <Track key={i} 
         img={el.image}
         title={el.name}
-        artists={el.artist}
+        artists={el.artists}
         album={el.album}
         popularity={el.popularity}/>
     })

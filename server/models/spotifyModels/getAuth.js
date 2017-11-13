@@ -33,13 +33,17 @@ async function spotifyRegister(code) {
           let mappedTracks;
           await spotify.getPlaylistTracks(newUser.username, el.id)
             .then(res => {
-              mappedTracks = res.body.items.map(el => ({
-                id: el.track.id,
-                name: el.track.name,
-                mature: el.track.explicit,
-                popularity: el.track.popularity,
-                artists: el.track.artists,
-              }));
+              mappedTracks = res.body.items.map(el => {
+                return {
+                  id: el.track.id,
+                  name: el.track.name ? el.track.name : 'Unknown',
+                  mature: el.track.explicit ? el.track.explicit : false,
+                  popularity: el.track.popularity ? el.track.popularity : 0,
+                  artists: el.track.artists.length > 1 ? 'Various Artists' : el.track.artists[0].name || 'Unknown',
+                  image: el.track.album.images[0].url ? el.track.album.images[0].url : undefined,
+                  album: el.track.album.name ? el.track.album.name : 'Unknown',
+                }
+              });
             })
             .catch(e => mappedTracks = false);
           if (mappedTracks) return {id: el.id, name: el.name, tracks: mappedTracks};

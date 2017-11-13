@@ -1,5 +1,5 @@
 const client = require('./redis.js');
-const search = require('../spotifyModels/searchTracks.js');
+const search = require('../userModels/findTrack.js');
 const locate = require('../userModels/findUser.js');
 
 async function getPlaylist(id, simple) {
@@ -13,7 +13,8 @@ async function getPlaylist(id, simple) {
       playlist.name = reply.name;
       client.smembers(`tracks:${reply.tracks}`, async (err, reply) => {
         playlist.length = reply.length;
-        if (!simple) playlist.tracks = await search(reply.slice(0, 50), user[0].refresh);
+        playlist.tracks = await Promise.all(reply.map(async el => await search(el)));
+        playlist.tracks = playlist.tracks.length ? playlist.tracks.reduce((prev, curr) => prev.concat(curr)) : [];
         resolve(playlist);
         if (err) reject(err);
       })

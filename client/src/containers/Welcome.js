@@ -29,7 +29,7 @@ class Welcome extends Component {
         this.loaded = true;
         this.props.login(res);
       })
-      .catch(e => console.log(e));
+      .catch(e => console.error(e));
     }
     
     componentWillMount() {

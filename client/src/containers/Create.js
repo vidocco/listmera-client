@@ -29,7 +29,7 @@ class Create extends Component {
         window.localStorage.setItem('user', JSON.stringify(this.props.user));
         window.location = `/playlist/${res.id}`
       })
-      .catch(e => console.log(e));
+      .catch(e => console.error(e));
   }
   render() {
     return (

@@ -4,7 +4,6 @@ module.exports = {
       .filter(el => el !== null)
       .map(el => el.tracks)
       .reduce((prev, curr) => prev.concat(curr))
-      .map(el => el.id);
   },
   match (collab, playlist) {
     return playlist
