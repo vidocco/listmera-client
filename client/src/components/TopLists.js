@@ -10,7 +10,7 @@ class TopLists extends Component {
     return this.props.content.map((el, i) => {
       return (
         <Link key={i} style={{ textDecoration: 'none' }} to={`/playlist/${el.id}`}>
-          <TopItem cover={el.cover || require('../assets/music-albums.png')}
+          <TopItem cover={el.cover ? el.cover : require('../assets/music-albums.png')}
             title={el.name}
             songs={el.length}
             genres="N/A"

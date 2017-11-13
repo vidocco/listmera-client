@@ -15,6 +15,19 @@ async function getPlaylist(id, simple) {
         playlist.length = reply.length;
         playlist.tracks = await Promise.all(reply.map(async el => await search(el)));
         playlist.tracks = playlist.tracks.length ? playlist.tracks.reduce((prev, curr) => prev.concat(curr)) : [];
+        playlist.cover = playlist.tracks.length ? playlist.tracks.reduce((acc,el) => {
+          if (acc.length < 4) {
+            acc.push({image: el.image, popularity: el.popularity});
+            return acc.sort((a,b) => b.popularity - a.popularity);
+          } else if (el.popularity > acc[3].popularity) {
+            acc = [
+              ...acc.slice(0,3),
+              {image: el.image, popularity: el.popularity}
+            ];
+            return acc.sort((a,b) => b.popularity - a.popularity);
+          } else return acc;  
+        }, []).map(el => el.image) : undefined;
+        console.log(playlist);
         resolve(playlist);
         if (err) reject(err);
       })

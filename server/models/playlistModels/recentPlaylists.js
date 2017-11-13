@@ -11,7 +11,6 @@ async function getPlaylist() {
       playlists = playlists.map(el => {
         if (el.tracks.length) {
           const coverImg = el.tracks.reduce((acc,el) => {
-            console.log(acc);
             if (acc.length < 4) {
               acc.push({image: el.image, popularity: el.popularity});
               return acc.sort((a,b) => b.popularity - a.popularity);
