@@ -5,9 +5,32 @@ async function getPlaylist() {
   return new Promise((resolve, reject) => {
     client.smembers('recent', async (err, reply) => {
       if(err) reject(err);
-      const playlists = await Promise.all(reply.map(async el => {
+      let playlists = await Promise.all(reply.map(async el => {
         return await display(el, true);
       }));
+      playlists = playlists.map(el => {
+        if (el.tracks.length) {
+          const coverImg = el.tracks.reduce((acc,el) => {
+            console.log(acc);
+            if (acc.length < 4) {
+              acc.push({image: el.image, popularity: el.popularity});
+              return acc.sort((a,b) => b.popularity - a.popularity);
+            } else if (el.popularity > acc[3].popularity) {
+              acc = [
+                ...acc.slice(0,3),
+                {image: el.image, popularity: el.popularity}
+              ];
+              return acc.sort((a,b) => b.popularity - a.popularity);
+            } else return acc;  
+          }, []).map(el => el.image);
+          return {
+            ...el,
+            cover: coverImg,
+          };
+        } else {
+          return el;
+        }
+      });
       resolve({playlists: playlists});
     })
   });

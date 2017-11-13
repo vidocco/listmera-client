@@ -6,7 +6,10 @@ class TopItem extends Component {
     return (
       <div className="TopPlaylistItem">
         <div className="IconWrap">
-          <img alt="album cover" className="PlaylistImg" src={this.props.cover}/>
+          <img alt="album cover" className="PlaylistImg" src={this.props.cover[0]}/>
+          <img alt="album cover" className="PlaylistImg" src={this.props.cover[1]}/>
+          <img alt="album cover" className="PlaylistImg" src={this.props.cover[2]}/>
+          <img alt="album cover" className="PlaylistImg" src={this.props.cover[3]}/>
         </div>
         <div className="PlaylistDetails">
           <h3>{this.props.title}</h3>

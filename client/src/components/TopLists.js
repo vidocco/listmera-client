@@ -23,6 +23,7 @@ class TopLists extends Component {
   }
 
   render() {
+    console.log(this.props);
     const playlists = this.renderPlaylists();
     return (
       <div className="TopPlaylistWrap">

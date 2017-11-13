@@ -151,10 +151,13 @@ h1 {
   width: 310px;
   height: 310px;
   position: absolute;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .PlaylistImg {
-  width: 100%;
+  width: 50%;
+  height: 50%;
 }
 
 .PlaylistDetails {
