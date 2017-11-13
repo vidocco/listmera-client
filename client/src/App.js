@@ -14,6 +14,7 @@ import Access from './containers/Access';
 import Welcome from './containers/Welcome';
 import Create from './containers/Create';
 import Playlist from './containers/Playlist';
+import Profile from './containers/Profile';
 // import SignUp from './SignUp';
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/create" component={Create} />
           <Route path="/access" component={Access} />
           <Route path="/welcome" component={Welcome} />
+          <Route path="/me" component={Profile} />
           <Route path="/playlist/:id" component={Playlist} />
         </div>
       </Router>

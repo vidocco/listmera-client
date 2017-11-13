@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 class Header extends Component {
-  delete() {
-    window.localStorage.removeItem('user');
-  }
-
   render() {
     console.log('Redux Status: ',this.props.user);
     console.log('Local Storage: ',JSON.parse(window.localStorage.getItem('user')));
@@ -17,7 +13,9 @@ class Header extends Component {
         <p>login</p>
       </Link>
     : <div className="ProfileSample">
-        <p>{this.props.user.name.split(' ')[0]}</p>
+        <Link style={{ textDecoration: 'none' }} to="/me">
+          <p>{this.props.user.name.split(' ')[0]}</p>
+        </Link>
         <div className="ProfilePicWrapper">
           <img alt="yourpic" className="ProfilePic" src={this.props.user.picture}/>
         </div>
@@ -33,7 +31,6 @@ class Header extends Component {
               </div>
               <h1>Listmera</h1>
             </div>
-              <button onClick={this.delete}>x</button>
             {login}
           </div>
         </nav>

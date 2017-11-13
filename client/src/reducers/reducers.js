@@ -20,6 +20,13 @@ const reducer = (state = user, action) => {
         action.playlist.id
       ]
     }
+  case 'LOGOUT':
+    return {
+      username: '',
+      name: '',
+      picture: '',
+      playlists: [],
+    }
   default: return state;
   }
 }

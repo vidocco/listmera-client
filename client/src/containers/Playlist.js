@@ -89,11 +89,11 @@ class Playlist extends Component {
     let tracks = this.state ? this.renderTracks(this.state.tracks) : 'waiting';
     let name = this.state ? this.state.name : 'Pending';
     let admin = this.state ? this.state.admin : 'admin';
-    let loading = this.state ? this.state.loaded : false;
+    let loaded = this.state ? this.state.loaded : false;
     return (
       <div className="Wrapper">
         <Header />
-        { loading ? (
+        { loaded ? (
           <div className="MaxWidthCreate">
             <div className="PlaylistTitleWrapper">
               <div className="PlaylistTitle">
