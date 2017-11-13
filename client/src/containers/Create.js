@@ -10,7 +10,6 @@ class Create extends Component {
   constructor(props) {
     super(props);
     const user = JSON.parse(window.localStorage.getItem('user'));
-    console.log(user);
     if (!user) {
       window.location = '/access';
     }

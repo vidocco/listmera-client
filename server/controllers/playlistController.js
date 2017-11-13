@@ -26,9 +26,7 @@ const recent = require('../models/playlistModels/recentPlaylists.js');
 module.exports = {
   create: async function (ctx) {
     const playlist = JSON.parse(ctx.request.body);
-    console.log(playlist);
     const user = await locate(playlist.username);
-    console.log(user);
     const trackList = engine.init(user[0].playlists);
     const newPlaylist = await create({
       admin : playlist.username,
@@ -50,7 +48,6 @@ module.exports = {
     const playlist = await getTracks(ctx.params.id);
     ctx.status = await intersect(playlist, trackId, user[0].username)
       .catch(e => console.error(e));
-    console.log(ctx.status);
   },
   generate: async function (ctx) {
     const user = await locate(JSON.parse(ctx.request.body).username);

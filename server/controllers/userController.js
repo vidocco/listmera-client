@@ -8,7 +8,6 @@ const display = require('../models/playlistModels/getDisplayPlaylist.js');
 module.exports = {
   get: async function (ctx) {
     const user = await locate(ctx.headers.user);
-    console.log(user);
     if (!user[0]) {
       ctx.status = 401;
       return;
