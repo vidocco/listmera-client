@@ -4,6 +4,8 @@ const engine = require('../engine/engine.js');
 const locate = require('../models/userModels/findUser.js');
 //set a user as the admin user of a specific playlist. Processing function, returns 201 to show it worked correctly.
 const setAsManager = require('../models/userModels/userPlaylistModel.js');
+//removes a user as the manager for a playlist
+const removeAdmin = require('../models/userModels/removeAdmin.js');
 
 //push a playlist in Redis to a users spotify account.
 const generate = require('../models/spotifyModels/createPlaylist.js');
@@ -22,6 +24,8 @@ const intersect = require('../models/playlistModels/intersectTracks.js');
 const getTracks = require('../models/playlistModels/retrieveTrackList.js');
 //get all recently created playlists
 const recent = require('../models/playlistModels/recentPlaylists.js');
+//deletes a playlist
+const remove = require('../models/playlistModels/deletePlaylist.js');
 
 module.exports = {
   create: async function (ctx) {
@@ -59,7 +63,20 @@ module.exports = {
     else ctx.status = 401;
   },
   delete: async function (ctx) {
-
+    const playlist = await get(ctx.params.id);
+    const user = await locate(JSON.parse(ctx.request.body).username);
+    if (user.length && user[0].username === playlist.adminId) {
+      // await removeAdmin({username: user[0].username, id: ctx.params.id})
+      // await deletePlaylist({playlist: ctx.params.id, collabs: playlist.collabs, bank: playlist.bank, tracks: playlist.trackId});
+      console.log(playlist);
+      console.log('valid!');
+    } else if (!playlist.adminId) ctx.status = 400;
+    else ctx.status = 401;
+    console.log('=================================================');
+    console.log('USER REQUESTING: ', JSON.parse(ctx.request.body));
+    console.log('=================================================');
+    console.log('VALID REQUEST: ', playlist.adminId === user[0].username);
+    console.log('=================================================');
   },
   recent: async function (ctx) {
     ctx.response.body = await recent();

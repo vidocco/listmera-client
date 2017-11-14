@@ -462,3 +462,22 @@ li {
   background-color: grey;
   cursor: default;
 }
+
+.PlaylistManage {
+  display: flex;
+  align-items: center;
+}
+
+.Delete {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  background-color: rgb(153, 0, 0);
+}
+
+.DeleteIco {
+  margin: auto;
+  margin-top: 3px;
+  height: 70%;
+  align-self: center;
+}

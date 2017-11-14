@@ -2,6 +2,31 @@ const mongo = require('./mongo.js');
 const login = require('./loginModel.js');
 const findTrack = require('./findTrack');
 
+function cleanDb(db) {
+  var duplicates = [];
+  return new Promise ((resolve, reject) => {
+    db.collection('tracks').aggregate([
+      { $group: {
+        _id: { id: "$id"},
+        dups: { "$addToSet": "$_id" },
+        count: { "$sum": 1 }
+      }},
+      { $match: { 
+        count: { "$gt": 1 }
+      }}
+    ],
+    {allowDiskUse: true}
+    )
+    .forEach((doc) => {
+        doc.dups.shift();
+        doc.dups.forEach((dupId) => {
+          duplicates.push(dupId);
+        }
+      )
+    }, () => db.collection('tracks').remove({_id:{$in:duplicates}}, () => resolve('done!')));
+  });
+}
+
 async function registerUser(object) {
   const db = await mongo;
   const simplePlaylists = await Promise.all(object.playlists.map(async playlist => {
@@ -18,7 +43,8 @@ async function registerUser(object) {
         tracks: tracks,
       }
     }
-  }))
+  }));
+  await cleanDb(db);
   await db.collection('users').insertOne({
     username: object.username,
     name: object.name,

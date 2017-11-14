@@ -57,16 +57,21 @@ class Playlist extends Component {
       },
     }).then(res => console.log(res))
       .catch(e => console.error(e));
-    // fetch(`http://localhost:3000/api${window.location.pathname}`, {
-    //   method: 'DELETE',
-    //   // body: JSON.stringify(code),
-    //   mode: 'cors',
-    //   header: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    // }).then(res => console.log(res))
-    //   .catch(e => console.error(e));
+  }
+
+  delete () {
+    const user = JSON.parse(window.localStorage.getItem('user'));
+    const body = {username: user.username};
+    fetch(`http://localhost:3000/api${window.location.pathname}`, {
+      method: 'DELETE',
+      body: JSON.stringify(body),
+      mode: 'cors',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => console.log(res))
+      .catch(e => console.error(e));
   }
 
   //========================================= RENDERING
@@ -83,18 +88,34 @@ class Playlist extends Component {
   }
 
   render() {
-    let collabed = this.state && (this.state.collabers.indexOf(JSON.parse(window.localStorage.getItem('user')).name) >= 0) ? 'Collabed' : '';
+    let collabed = this.state && (this.state.collabers.indexOf(JSON.parse(window.localStorage.getItem('user')).name) >= 0)
+      ? 'Collabed'
+      : '';
     let generate = (this.state && this.state.isAdmin)
-      ? (<button className="Generate" onClick={this.generate}>GENERATE</button>)
-      : (<button className={'Collaborate ' + collabed} onClick={this.collaborate}>COLLABORATE</button>);
+      ? (
+        <div className="PlaylistManage">
+          <button className="Create Delete" onClick={this.delete}><img className="DeleteIco"alt="DELETE" src={require('../assets/delete.png')}/></button>
+          <button className="Generate" onClick={this.generate}>GENERATE</button>
+        </div>
+      ) : (<button className={'Collaborate ' + collabed} onClick={this.collaborate}>COLLABORATE</button>);
     let extra = (!this.state || this.state.tracks.length === 0) 
       ? (<p className="MoreSongs">this playlist needs a little help, why not collaborate with it?</p>)
       : (<p className="MoreSongs">{`... making that ${this.state.length} songs total`}</p>);
-    let tracks = this.state ? this.renderTracks(this.state.tracks) : 'waiting';
-    let name = this.state ? this.state.name : 'Pending';
-    let admin = this.state ? this.state.admin : 'admin';
-    let collabers = this.state ? this.state.collabers.filter(el => el !== admin) : 'waiting';
-    let loaded = this.state ? this.state.loaded : false;
+    let tracks = this.state
+      ? this.renderTracks(this.state.tracks)
+      : 'waiting';
+    let name = this.state
+      ? this.state.name
+      : 'Pending';
+    let admin = this.state
+      ? this.state.admin
+      : 'admin';
+    let collabers = this.state
+      ? this.state.collabers.filter(el => el !== admin)
+      : 'waiting';
+    let loaded = this.state
+      ? this.state.loaded
+      : false;
     return (
       <div className="Wrapper">
         <Header />

@@ -7,8 +7,11 @@ async function getFullPlaylist(id) {
     client.hgetall(`playlist:${id}`, async (err, reply) => {
       playlist.adminId = reply.admin;
       const user = await locate(playlist.adminId);
+      playlist.collabs = reply.collabs;
+      playlist.bank = reply.bank;
       playlist.admin = user[0].name;
       playlist.name = reply.name;
+      playlist.trackId = reply.tracks;
       if (err) reject(err);
       client.smembers(`tracks:${reply.tracks}`, async (err, reply) => {
         playlist.tracks = reply;
