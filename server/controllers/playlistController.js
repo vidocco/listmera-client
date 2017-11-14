@@ -30,7 +30,6 @@ const remove = require('../models/playlistModels/deletePlaylist.js');
 module.exports = {
   create: async function (ctx) {
     const req = JSON.parse(ctx.request.body);
-    console.log(req.tempo);
     const parsed = engine.parse(req.values, req.tempo)
     const user = await locate(req.username);
     const trackList = engine.init(user[0].playlists);
@@ -58,7 +57,7 @@ module.exports = {
     const tracks = engine.init(user[0].playlists);
     const trackId = await set(tracks);
     const playlist = await getTracks(ctx.params.id);
-    ctx.status = await intersect(playlist, trackId, user[0].username)
+    ctx.status = await intersect(playlist, trackId, user[0].username, user[0].refresh)
       .catch(e => console.error(e));
   },
   generate: async function (ctx) {

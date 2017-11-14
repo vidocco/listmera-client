@@ -17,7 +17,6 @@ class Playlist extends Component {
         return res.json()
       })
       .then(res => {
-        console.log(res);
         if (!res) this.setState({deleted: true});
         if (window.localStorage.getItem('user') && JSON.parse(window.localStorage.getItem('user')).username === res.adminId) {
           this.setState({
@@ -140,7 +139,7 @@ class Playlist extends Component {
         const name = state.name;
         const admin = state.admin;
         const collabers = (state.collabers.filter(el => el !== admin).length > 0)
-        ? `| with the help of ${state.collabers.filter(el => el !== admin)}`
+        ? ` | with the help of ${state.collabers.filter(el => el !== admin)}`
         : ' and in need of collaborators';
         const extra = (state.tracks.length === 0)
         ? (<p className="MoreSongs">this playlist needs a little help. Come on, click that button!</p>)
