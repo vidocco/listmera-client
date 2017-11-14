@@ -66,17 +66,18 @@ module.exports = {
     const playlist = await get(ctx.params.id);
     const user = await locate(JSON.parse(ctx.request.body).username);
     if (user.length && user[0].username === playlist.adminId) {
-      // await removeAdmin({username: user[0].username, id: ctx.params.id})
-      // await deletePlaylist({playlist: ctx.params.id, collabs: playlist.collabs, bank: playlist.bank, tracks: playlist.trackId});
-      console.log(playlist);
-      console.log('valid!');
+      await remove({
+        playlist: ctx.params.id,
+        collabs: playlist.collabs,
+        bank: playlist.bank,
+        tracks: playlist.trackId
+      });
+      ctx.status = await removeAdmin({
+        username: user[0].username,
+        id: ctx.params.id
+      });
     } else if (!playlist.adminId) ctx.status = 400;
     else ctx.status = 401;
-    console.log('=================================================');
-    console.log('USER REQUESTING: ', JSON.parse(ctx.request.body));
-    console.log('=================================================');
-    console.log('VALID REQUEST: ', playlist.adminId === user[0].username);
-    console.log('=================================================');
   },
   recent: async function (ctx) {
     ctx.response.body = await recent();

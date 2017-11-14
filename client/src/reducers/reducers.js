@@ -27,6 +27,12 @@ const reducer = (state = user, action) => {
       picture: '',
       playlists: [],
     }
+  case 'UNSET_PLAYLIST':
+    const play = state.playlists.filter(el => el !== action.playlist);
+    return {
+      ...state,
+      playlists: play,
+    }
   default: return state;
   }
 }

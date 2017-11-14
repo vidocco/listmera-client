@@ -1,12 +1,14 @@
 const mongo = require('./mongo.js');
-const login = require('./loginModel.js');
+const locate = require('./findUser.js');
 
 async function removeAdmin(object) {
   const db = await mongo;
-  console.log('removing');
+  const user = await locate(object.username);
+  console.log(user);
+  const lists = user[0].adminOf.filter(el => el !== object.id);
   await db.collection('users').update(
     { username: object.username },
-    { $unset: { adminOf: object.id } });
+    { $set: { adminOf: lists } });
   return 202;
 }
 

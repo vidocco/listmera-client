@@ -11,3 +11,8 @@ export const set = (playlist) => ({
 export const logout = () => ({
   type: 'LOGOUT',
 })
+
+export const unset = (playlist) => ({
+  type: 'UNSET_PLAYLIST',
+  playlist
+})

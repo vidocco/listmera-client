@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-// import { connect } from 'react-redux';
-// import { set } from '../actions'
+import { connect } from 'react-redux';
+import { unset } from '../actions'
 
 import Header from '../components/Header';
 import Loader from '../components/Loader';
@@ -59,7 +59,7 @@ class Playlist extends Component {
       .catch(e => console.error(e));
   }
 
-  delete () {
+  delete = () => {
     const user = JSON.parse(window.localStorage.getItem('user'));
     const body = {username: user.username};
     fetch(`http://localhost:3000/api${window.location.pathname}`, {
@@ -70,7 +70,7 @@ class Playlist extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(res => console.log(res))
+    }).then(res => this.props.unset(window.location.pathname.split('/')[2]))
       .catch(e => console.error(e));
   }
 
@@ -146,10 +146,8 @@ class Playlist extends Component {
 //   user: state,
 // })
 
-// const mapDispatchToProps = (dispatch) => ({
-//   set: (playlist) => dispatch(set(playlist)),
-// })
+const mapDispatchToProps = (dispatch) => ({
+  unset: (playlist) => dispatch(unset(playlist)),
+})
 
-// export default connect(null, mapDispatchToProps)(Playlist);
-
-export default Playlist
+export default connect(null, mapDispatchToProps)(Playlist);
