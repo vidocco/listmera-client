@@ -2,21 +2,33 @@ import React, { Component } from 'react';
 import '../App.css';
 
 class TopItem extends Component {
+
+  //========================================= RENDERING
+
+  renderCover(cover) {
+    if (Array.isArray(cover)) {
+      return (
+        <div className="IconWrap">
+          <img alt="album cover" className="PlaylistImg" src={this.props.cover[0]}/>
+          <img alt="album cover" className="PlaylistImg" src={this.props.cover[1] || require('../assets/music-albums.png')}/>
+          <img alt="album cover" className="PlaylistImg" src={this.props.cover[2] || require('../assets/music-albums.png')}/>
+          <img alt="album cover" className="PlaylistImg" src={this.props.cover[3] || require('../assets/music-albums.png')}/>
+        </div>
+      )
+    } else {
+      return (
+        <div className="IconWrap">
+          <img alt="album cover" className="PlaylistImg Solo" src={this.props.cover}/>
+        </div>
+      )
+    }
+  }
+
   render() {
+    const cover = this.renderCover(this.props.cover);
     return (
       <div className="TopPlaylistItem">
-        {Array.isArray(this.props.cover) ? (
-          <div className="IconWrap">
-            <img alt="album cover" className="PlaylistImg" src={this.props.cover[0]}/>
-            <img alt="album cover" className="PlaylistImg" src={this.props.cover[1] || require('../assets/music-albums.png')}/>
-            <img alt="album cover" className="PlaylistImg" src={this.props.cover[2] || require('../assets/music-albums.png')}/>
-            <img alt="album cover" className="PlaylistImg" src={this.props.cover[3] || require('../assets/music-albums.png')}/>
-          </div>
-        ) : (
-          <div className="IconWrap">
-            <img alt="album cover" className="PlaylistImg Solo" src={this.props.cover}/>
-          </div>
-        )}
+        {cover}
         <div className="PlaylistDetails">
           <h3>{this.props.title}</h3>
           <h4>Nº of Songs: {this.props.songs}</h4>
