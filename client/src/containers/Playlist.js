@@ -60,18 +60,31 @@ class Playlist extends Component {
   }
 
   delete = () => {
-    const user = JSON.parse(window.localStorage.getItem('user'));
-    const body = {username: user.username};
-    fetch(`http://localhost:3000/api${window.location.pathname}`, {
-      method: 'DELETE',
-      body: JSON.stringify(body),
-      mode: 'cors',
-      header: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(res => this.props.unset(window.location.pathname.split('/')[2]))
-      .catch(e => console.error(e));
+    let user = JSON.parse(window.localStorage.getItem('user'));
+    const sure = window.confirm(`Hey ${user.name.split(' ')[0]}, are you sure you want to delete this playlist?`);
+    if (sure) {
+      const body = {username: user.username};
+      fetch(`http://localhost:3000/api${window.location.pathname}`, {
+        method: 'DELETE',
+        body: JSON.stringify(body),
+        mode: 'cors',
+        header: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(res => {
+        const track = window.location.pathname.split('/')[2];
+        const newPlaylists = user.playlists.filter(el => el !== track)
+        user = {
+          ...user,
+          playlists: newPlaylists,
+        }
+        window.localStorage.setItem('user', JSON.stringify(user));
+        this.props.unset(track)
+        window.location = '/';
+      })
+        .catch(e => console.error(e));
+    }
   }
 
   //========================================= RENDERING
@@ -141,10 +154,6 @@ class Playlist extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => ({
-//   user: state,
-// })
 
 const mapDispatchToProps = (dispatch) => ({
   unset: (playlist) => dispatch(unset(playlist)),
