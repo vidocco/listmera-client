@@ -5,7 +5,6 @@ async function intersect(playlist, collab, collaborator) {
     client.sismember(`collabs:${playlist.collabs}`, collaborator, (err, results) => {
       if (err) reject(500);
       if (results) {
-        console.log(results, playlist.collabs);
       } else {
         client.SINTER(`tracks:${playlist.bank}`, `tracks:${collab}`, (err, intersect) => {
           if (intersect.length) client.sadd(`tracks:${playlist.tracks}`, intersect);
