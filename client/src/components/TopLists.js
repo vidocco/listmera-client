@@ -25,7 +25,6 @@ class TopLists extends Component {
   renderPlaylists() {
     return this.props.content.map((el, i) => {
       const filters = this.formatFilters(el);
-      console.log(el);
       return (
         <Link key={i} style={{ textDecoration: 'none' }} to={`/playlist/${el.id}`}>
           <TopItem cover={el.cover ? el.cover : require('../assets/music-albums.png')}

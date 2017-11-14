@@ -13,7 +13,6 @@ async function getPlaylist(id, simple) {
       const user = await locate(playlist.adminId);
       playlist.admin = user[0].name;
       playlist.name = details.name;
-      console.log(details);
       if (details.dance) playlist.dance = 'Dance';
       if (details.energy) playlist.energy = 'Energetic';
       if (details.loud) playlist.loud = 'Loud';
