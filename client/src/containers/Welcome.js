@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import ReactDom from 'react-dom';
 import query from 'query-string';
 
 import { connect } from 'react-redux';
@@ -31,10 +30,8 @@ class Welcome extends Component {
       })
       .catch(e => console.error(e));
     }
-    
-    componentWillMount() {
-    }
-  //============ RENDERING
+
+  //========================================= RENDERING
 
   render() {
     const user = this.props.user;

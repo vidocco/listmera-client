@@ -14,6 +14,7 @@ class Create extends Component {
       window.location = '/access';
     }
   }
+
   createPlaylist(name) {
     fetch('http://localhost:3000/api/playlist', {
       method: 'POST',
@@ -31,6 +32,7 @@ class Create extends Component {
       })
       .catch(e => console.error(e));
   }
+  
   render() {
     return (
       <div className="Wrapper">

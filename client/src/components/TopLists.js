@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import TopItem from './TopItem';
 
 class TopLists extends Component {
+
+  //========================================= RENDERING
+
   renderPlaylists() {
     return this.props.content.map((el, i) => {
       return (

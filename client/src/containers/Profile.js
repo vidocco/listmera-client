@@ -38,30 +38,37 @@ class Profile extends Component {
     window.location = '/';
   }
 
+  //========================================= RENDERING
+
+  renderProfile(state) {
+    if (state) {
+      return (
+        <div className="MaxWidthCreate">
+          <div className="ProfileWrapper">
+            <div className="ProfileImage">
+              <img alt="you" className="WelcomePicture" src={this.state.picture}/>
+            </div>
+            <div className="ProfileDetails">
+              <h3>Name: {this.state.name}</h3>
+              <h3>e-mail: {this.state.email}</h3>
+              <h3>Username: {this.state.username}</h3>
+              <a onClick={this.logout}><p>log out</p></a>
+            </div>
+          </div>
+          <TopLists content={this.state.adminOf} title="Your Playlists"/>
+        </div>
+      )
+    } else {
+      return <Loader />
+    }
+  }
+
   render() {
-    const loaded = this.state ? this.state.loaded : false;
+    const profile = this.renderProfile(this.state);
     return (
       <div className="Wrapper">
         <Header />
-        { loaded ? (
-          <div className="MaxWidthCreate">
-            <div className="ProfileWrapper">
-              <div className="ProfileImage">
-                <img alt="you" className="WelcomePicture" src={this.state.picture}/>
-              </div>
-              <div className="ProfileDetails">
-                <h3>Name: {this.state.name}</h3>
-                <h3>e-mail: {this.state.email}</h3>
-                <h3>Username: {this.state.username}</h3>
-                <a onClick={this.logout}><p>log out</p></a>
-              </div>
-            </div>
-            <TopLists content={this.state.adminOf} title="Your Playlists"/>
-          </div>
-        ) : (
-          <Loader />
-        )
-        }
+        {profile}
       </div>
     );
   }

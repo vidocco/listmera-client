@@ -14,23 +14,28 @@ class Main extends Component {
       .then(res => {
         this.setState({
           ...res,
-          loaded: true,
         })
       })
       .catch(e => console.error(e));
   }
 
+  //========================================= RENDERING
+
+  renderTopLists(state) {
+    if (state) {
+      return <TopLists content={this.state.playlists} title="Recently Created Playlists" />
+    } else {
+      return <Loader />
+    }
+  }
+
   render() {
-    const loaded = this.state ? this.state.loaded : false;
+    const lists = this.renderTopLists(this.state);
     return (
       <div className="Wrapper">
         <Header />
         <Banner />
-        {loaded ? (
-          <TopLists content={this.state.playlists} title="Recently created Playlists"/>
-        ) : (
-          <Loader />
-        )}
+        {lists}
       </div>
     );
   }
