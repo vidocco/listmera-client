@@ -14,6 +14,7 @@ class Playlist extends Component {
     fetch(`http://localhost:3000/api${window.location.pathname}`)
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         if (window.localStorage.getItem('user') && JSON.parse(window.localStorage.getItem('user')).username === res.adminId) {
           this.setState({
             ...res,
@@ -82,15 +83,17 @@ class Playlist extends Component {
   }
 
   render() {
+    let collabed = this.state && (this.state.collabers.indexOf(JSON.parse(window.localStorage.getItem('user')).name) >= 0) ? 'Collabed' : '';
     let generate = (this.state && this.state.isAdmin)
       ? (<button className="Generate" onClick={this.generate}>GENERATE</button>)
-      : (<button className="Collaborate" onClick={this.collaborate}>COLLABORATE</button>);
-    let extra = (this.state && this.state.tracks.length === 50) 
-      ? (<p className="MoreSongs">{`... and ${this.state.length - this.state.tracks.length} songs more`}</p>)
-      : (<p className="MoreSongs">this playlist needs a little help, why not collaborate with it?</p>)
+      : (<button className={'Collaborate ' + collabed} onClick={this.collaborate}>COLLABORATE</button>);
+    let extra = (!this.state || this.state.tracks.length === 0) 
+      ? (<p className="MoreSongs">this playlist needs a little help, why not collaborate with it?</p>)
+      : (<p className="MoreSongs">{`... making that ${this.state.length} songs total`}</p>);
     let tracks = this.state ? this.renderTracks(this.state.tracks) : 'waiting';
     let name = this.state ? this.state.name : 'Pending';
     let admin = this.state ? this.state.admin : 'admin';
+    let collabers = this.state ? this.state.collabers.filter(el => el !== admin) : 'waiting';
     let loaded = this.state ? this.state.loaded : false;
     return (
       <div className="Wrapper">
@@ -100,7 +103,7 @@ class Playlist extends Component {
             <div className="PlaylistTitleWrapper">
               <div className="PlaylistTitle">
                 <h1>{name}</h1>
-                <p>{'created by ' + admin}</p>
+                <p>{'created by ' + admin + ' | with the help of ' + collabers}</p>
               </div>
               {generate}
             </div>

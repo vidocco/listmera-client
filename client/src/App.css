@@ -457,3 +457,8 @@ li {
 .ProfileDetails > a > p{
   text-align: left;
 }
+
+.Collabed {
+  background-color: grey;
+  cursor: default;
+}

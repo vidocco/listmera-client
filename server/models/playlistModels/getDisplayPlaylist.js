@@ -6,14 +6,15 @@ async function getPlaylist(id, simple) {
   return new Promise((resolve, reject) => {
     const playlist = {};
     playlist.id = id;
-    client.hgetall(`playlist:${id}`, async (err, reply) => {
-      playlist.adminId = reply.admin;
+    client.hgetall(`playlist:${id}`, async (err, details) => {
+      playlist.adminId = details.admin;
       const user = await locate(playlist.adminId);
       playlist.admin = user[0].name;
-      playlist.name = reply.name;
-      client.smembers(`tracks:${reply.tracks}`, async (err, reply) => {
-        playlist.length = reply.length;
-        playlist.tracks = await Promise.all(reply.map(async el => await search(el)));
+      playlist.name = details.name;
+      client.smembers(`tracks:${details.tracks}`, async (err, tracks) => {
+        if (err) reject(err);
+        playlist.length = tracks.length;
+        playlist.tracks = await Promise.all(tracks.map(async el => await search(el)));
         playlist.tracks = playlist.tracks.length ? playlist.tracks.reduce((prev, curr) => prev.concat(curr)) : [];
         playlist.cover = playlist.tracks.length ? playlist.tracks.reduce((acc,el) => {
           if (acc.length < 4) {
@@ -27,8 +28,12 @@ async function getPlaylist(id, simple) {
             return acc.sort((a,b) => b.popularity - a.popularity);
           } else return acc;  
         }, []).map(el => el.image) : undefined;
-        resolve(playlist);
-        if (err) reject(err);
+        client.smembers(`collabs:${details.collabs}`, async (err, users) => {
+          if (err) reject(err);
+          collabers = await Promise.all(users.map(async el => await locate(el)));
+          playlist.collabers = collabers.map(el => el[0].name);
+          resolve(playlist);
+        })
       })
     });
   });
