@@ -1,6 +1,6 @@
 const spotify = require('../../secrets/spotifyConf.js');
 
-async function spotifySearch(playlist, refresh) {
+async function generatePlaylist(playlist, refresh) {
   let playlistId;
   const tracks = playlist.tracks.map(el => `spotify:track:${el}`);
   await spotify.setRefreshToken(refresh);
@@ -18,4 +18,4 @@ async function spotifySearch(playlist, refresh) {
     .catch(e => console.error(e));
 }
 
-module.exports = spotifySearch;
+module.exports = generatePlaylist;

@@ -6,22 +6,32 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Banner extends Component {
+
+  //========================================= RENDERING
+
+  renderButton(user) {
+    if (user) {
+      return (
+        <Link to="/create">
+          <button className="Create">LET'S DO THIS</button>
+        </Link>
+      )
+    } else {
+      return (
+        <Link to="/access">
+          <button className="Create">LOGIN TO CREATE</button>
+        </Link>
+      )
+    }
+  }
+
   render() {
-    const link = this.props.user.username 
-    ? (
-      <Link to="/create">
-        <button className="Create">LET'S DO THIS</button>
-      </Link>
-    ) : (
-      <Link to="/access">
-        <button className="Create">LOGIN TO CREATE</button>
-      </Link>
-    )
+    const button = this.renderButton(this.props.user.username)
     return (
       <div className="Banner">
         <div className="BannerOverlay">
           <h1>Create a combined playlist</h1>
-          {link}
+          {button}
         </div>
       </div>
     );

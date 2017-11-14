@@ -15,7 +15,6 @@ import Welcome from './containers/Welcome';
 import Create from './containers/Create';
 import Playlist from './containers/Playlist';
 import Profile from './containers/Profile';
-// import SignUp from './SignUp';
 
 class App extends Component {
   constructor(props) {
