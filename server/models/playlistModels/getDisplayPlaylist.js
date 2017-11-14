@@ -13,6 +13,16 @@ async function getPlaylist(id, simple) {
       const user = await locate(playlist.adminId);
       playlist.admin = user[0].name;
       playlist.name = details.name;
+      console.log(details);
+      if (details.dance) playlist.dance = 'Dance';
+      if (details.energy) playlist.energy = 'Energetic';
+      if (details.loud) playlist.loud = 'Loud';
+      if (details.instrumental) playlist.instrumental = 'Instrumental';
+      if (details.live) playlist.live = 'Live';
+      if (details.mood) playlist.mood = 'Happy';
+      if (details.mood === 'false') playlist.mood = 'Sad';
+      if (details.major) playlist.major = 'Major';
+      if (details.minor) playlist.minor = 'Minor';
       client.smembers(`tracks:${details.tracks}`, async (err, tracks) => {
         if (err) reject(err);
         playlist.length = tracks.length;

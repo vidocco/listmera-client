@@ -32,7 +32,7 @@ class TopItem extends Component {
         <div className="PlaylistDetails">
           <h3>{this.props.title}</h3>
           <h4>Nº of Songs: {this.props.songs}</h4>
-          <h4>Genres: {this.props.genres}</h4>
+          <h4>Filters: {this.props.genres.length ? this.props.genres.join(', ') : 'None'}</h4>
           <h4>Duration: {this.props.duration} min</h4>
           <h5>Artists you may know: {this.props.artists}</h5>
         </div>

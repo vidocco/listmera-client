@@ -139,7 +139,7 @@ class Playlist extends Component {
         const name = state.name;
         const admin = state.admin;
         const collabers = (state.collabers.filter(el => el !== admin).length > 0)
-        ? ` | with the help of ${state.collabers.filter(el => el !== admin)}`
+        ? ` with the help of ${state.collabers.filter(el => el !== admin).join(', ')}`
         : ' and in need of collaborators';
         const extra = (state.tracks.length === 0)
         ? (<p className="MoreSongs">this playlist needs a little help. Come on, click that button!</p>)

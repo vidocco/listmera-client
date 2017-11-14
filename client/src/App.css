@@ -212,7 +212,17 @@ h5 {
   margin-bottom: 15px;
 }
 
-.UserForm > .Create {
+.Welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.Welcome > .Create {
   background-color: #1DB954;
   color: white;
   font-weight: 300;
@@ -288,6 +298,8 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
   height: 400px;
   margin-top: 50px;
 }
+
+
 
 .SignUpLogin > .UserForm > h2 {
   font-weight: 300;

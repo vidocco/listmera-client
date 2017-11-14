@@ -12,6 +12,7 @@ class Main extends Component {
     fetch('http://localhost:3000/api/playlists/recent')
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         this.setState({
           ...res,
         })

@@ -45,7 +45,7 @@ module.exports = {
       .filter(el => {
         if (source.mood) {
           return el.valence >= 0.5;
-        } else if (source.mood === false) {
+        } else if (source.mood === 0) {
           return el.valence <= 0.5;
         } else {
           return true;
@@ -106,9 +106,9 @@ module.exports = {
     if (~values.indexOf('Happy') && ~values.indexOf('Sad')) {
       res.mood = '';
     } else if (~values.indexOf('Happy')) {
-      res.mood = true;
+      res.mood = 1;
     } else if (~values.indexOf('Sad')) {
-      res.mood = false;
+      res.mood = 0;
     } else {
       res.mood = '';
     }
