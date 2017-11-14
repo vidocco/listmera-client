@@ -7,6 +7,8 @@ async function getPlaylist(id, simple) {
     const playlist = {};
     playlist.id = id;
     client.hgetall(`playlist:${id}`, async (err, details) => {
+      if (err) reject(err);
+      if (!details) resolve(null);
       playlist.adminId = details.admin;
       const user = await locate(playlist.adminId);
       playlist.admin = user[0].name;

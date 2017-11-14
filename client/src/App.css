@@ -88,7 +88,7 @@ h1 {
   height: 60px;
   width: 200px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #E7C977;
   font-family: "Roboto";
   font-size: 17px;
@@ -296,7 +296,7 @@ li {
 }
 
 .WelcomePicture {
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .ProfileSample {
@@ -349,7 +349,7 @@ li {
   height: 40px;
   width: 150px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #E7C977;
   font-family: "Roboto";
   font-size: 17px;
@@ -362,7 +362,7 @@ li {
   height: 40px;
   width: 150px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #1DB954;
   font-family: "Roboto";
   font-size: 17px;
@@ -473,6 +473,7 @@ li {
   width: 40px;
   margin-right: 10px;
   background-color: rgb(153, 0, 0);
+  border-radius: 5px;
 }
 
 .DeleteIco {
@@ -480,4 +481,13 @@ li {
   margin-top: 3px;
   height: 70%;
   align-self: center;
+}
+
+.Error {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.EasterEgg {
+  font-size: 9px;
 }

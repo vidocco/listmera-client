@@ -41,9 +41,15 @@ module.exports = {
     ctx.response.body = {id : newPlaylist};
   },
   get: async function (ctx) {
-    const content = await display(ctx.params.id);
-    ctx.response.body = content;
-    ctx.status = 200;
+    const content = await display(ctx.params.id)
+      .catch(e => e);
+    if (!content) {
+      ctx.response.body = {status: null};
+      ctx.status = 404;
+    } else {
+      ctx.response.body = content;
+      ctx.status = 200;
+    }
   },
   collab: async function (ctx) {
     const user = await locate(JSON.parse(ctx.request.body).username);

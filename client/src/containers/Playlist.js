@@ -12,9 +12,13 @@ class Playlist extends Component {
   constructor(props) {
     super(props);
     fetch(`http://localhost:3000/api${window.location.pathname}`)
-      .then(res => res.json())
+      .then(res => {
+        if (res.status === 404) return false;
+        return res.json()
+      })
       .then(res => {
         console.log(res);
+        if (!res) this.setState({deleted: true});
         if (window.localStorage.getItem('user') && JSON.parse(window.localStorage.getItem('user')).username === res.adminId) {
           this.setState({
             ...res,
@@ -28,7 +32,9 @@ class Playlist extends Component {
           });
         }
       })
-      .catch(e => console.error(e));
+      .catch(e => {
+        console.error(e);
+      });
   }
 
   collaborate () {
@@ -100,56 +106,72 @@ class Playlist extends Component {
     })
   }
 
-  render() {
-    let collabed = this.state && (this.state.collabers.indexOf(JSON.parse(window.localStorage.getItem('user')).name) >= 0)
-      ? 'Collabed'
-      : '';
-    let generate = (this.state && this.state.isAdmin)
-      ? (
+  renderButtons(state) {
+    const buttonClass = state.collabers.indexOf(JSON.parse(window.localStorage.getItem('user')).name) >= 0 
+    ? 'Collabed'
+    : '';
+    if (state.isAdmin) {
+      return (
         <div className="PlaylistManage">
           <button className="Create Delete" onClick={this.delete}><img className="DeleteIco"alt="DELETE" src={require('../assets/delete.png')}/></button>
           <button className="Generate" onClick={this.generate}>GENERATE</button>
         </div>
-      ) : (<button className={'Collaborate ' + collabed} onClick={this.collaborate}>COLLABORATE</button>);
-    let extra = (!this.state || this.state.tracks.length === 0) 
-      ? (<p className="MoreSongs">this playlist needs a little help, why not collaborate with it?</p>)
-      : (<p className="MoreSongs">{`... making that ${this.state.length} songs total`}</p>);
-    let tracks = this.state
-      ? this.renderTracks(this.state.tracks)
-      : 'waiting';
-    let name = this.state
-      ? this.state.name
-      : 'Pending';
-    let admin = this.state
-      ? this.state.admin
-      : 'admin';
-    let collabers = this.state
-      ? this.state.collabers.filter(el => el !== admin)
-      : 'waiting';
-    let loaded = this.state
-      ? this.state.loaded
-      : false;
-    return (
-      <div className="Wrapper">
-        <Header />
-        { loaded ? (
+      )
+    } else {
+      return (
+        <button className={'Collaborate ' + buttonClass} onClick={this.collaborate}>COLLABORATE</button>
+      );
+    }
+  }
+
+  renderContent = (state) => {
+    if (state) {
+      if (state.deleted) {
+        return (
+          <div className="Error">
+            <h1>This playlist no longer exists</h1>
+            <p>(or maybe it never did)</p>
+            <p className="EasterEgg">[insert spooky theremin sound here]</p>
+          </div>
+        )
+      } else {
+        const buttons = this.renderButtons(state);
+        const tracks = this.renderTracks(state.tracks);
+        const name = state.name;
+        const admin = state.admin;
+        const collabers = (state.collabers.filter(el => el !== admin).length > 0)
+        ? `| with the help of ${state.collabers.filter(el => el !== admin)}`
+        : ' and in need of collaborators';
+        const extra = (state.tracks.length === 0)
+        ? (<p className="MoreSongs">this playlist needs a little help. Come on, click that button!</p>)
+        : (<p className="MoreSongs">{`... making that ${this.state.length} songs in total`}</p>);
+        return (
           <div className="MaxWidthCreate">
             <div className="PlaylistTitleWrapper">
               <div className="PlaylistTitle">
                 <h1>{name}</h1>
-                <p>{'created by ' + admin + ' | with the help of ' + collabers}</p>
+                <p>{'created by ' + admin + collabers}</p>
               </div>
-              {generate}
+              {buttons}
             </div>
             <div className="TrackWrapper">
               {tracks}
             </div>
             {extra}
-          </div>
-        ) : (
-          <Loader />
+        </div>
         )
-        }
+      }
+    } else {
+      return <Loader />
+    }
+  }
+
+  render() {
+    const content = this.renderContent(this.state);
+    return (
+      <div className="Wrapper">
+        <Header />
+        {content}
       </div>
     );
   }
