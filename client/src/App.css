@@ -9,6 +9,10 @@
   display: none; 
 }
 
+button:focus {
+  outline: none;
+}
+
 p {
   font: "Roboto";
   font-size: 15px;
@@ -202,7 +206,7 @@ h5 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 80%;
   margin: auto;
   margin-bottom: 15px;
@@ -216,6 +220,7 @@ h5 {
 
 input[type="text"], input[type="password"], textarea {
   margin: 5px;
+  margin-bottom: 10px;
   border: 0;
   height: 30px;
   width: 50%;
@@ -227,13 +232,40 @@ input[type="text"], input[type="password"], textarea {
   font-size: 16px;
 }
 
-.LastInput {
-  width: 100%;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 7px;
+input[type="text"]:focus {
+  outline: none;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-bottom: 20px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  /* width: 500px; */
+  height: 3px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  border: 3px solid #E7C977;
+  background: #191414;
+  margin-top: -6px;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}  
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
 }
 
 .AddButton {
@@ -490,4 +522,50 @@ li {
 
 .EasterEgg {
   font-size: 9px;
+}
+
+.SelectorWrap {
+  margin-top: 20px;
+}
+
+.UserForm > h2 {
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.TypeSelector {
+  height: 50px;
+  width: 150px;
+  border: 2px solid #E7C977;
+  border-radius: 5px;
+  margin: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 300;
+  cursor: pointer;
+  color: rgba(121, 121, 121, 1);
+}
+
+.Selected {
+  background-color: #E7C977;
+}
+
+.SliderWrap {
+  margin-top: 20px;
+  display: flex;
+  height: 50px;
+  width: 400px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Slider {
+  width: 300px;
+}
+
+.SliderWrap > p {
+  margin-bottom: 35px;
 }

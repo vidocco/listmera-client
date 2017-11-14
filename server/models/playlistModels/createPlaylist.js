@@ -1,7 +1,7 @@
 const client = require('./redis.js');
 const uuid = require('shortid');
 
-async function createPlaylist(newPlaylist) {
+async function createPlaylist(newPlaylist, values) {
   const playlistId = uuid.generate();
   const trackId = uuid.generate();
   const bankId = uuid.generate();
@@ -12,6 +12,7 @@ async function createPlaylist(newPlaylist) {
     tracks: trackId,
     bank: bankId,
     collabs: collabId,
+    ...values,
   };
   await client.hmset(`playlist:${playlistId}`, playlist);
   await client.sadd(`tracks:${bankId}`, newPlaylist.tracks);
