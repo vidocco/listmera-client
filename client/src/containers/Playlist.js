@@ -144,12 +144,12 @@ class Playlist extends Component {
       const color = state.loading ? 'Generate Clicked' : 'Generate';
       return state.done ? (
         <div className="PlaylistManage">
-          <button className="Create Delete" onClick={this.delete}><img className="DeleteIco"alt="DELETE" src={require('../assets/delete.png')}/></button>
-          <button className={color} onClick={this.generate}>{text}</button>
+          <button className="Generate Clicked">"DONE"</button>
         </div>
       ) : (
         <div className="PlaylistManage">
-          <button className="Generate Clicked">"DONE"</button>
+          <button className="Create Delete" onClick={this.delete}><img className="DeleteIco"alt="DELETE" src={require('../assets/delete.png')}/></button>
+          <button className={color} onClick={this.generate}>{text}</button>
         </div>
       )
     } else {
