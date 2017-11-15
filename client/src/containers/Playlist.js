@@ -144,7 +144,7 @@ class Playlist extends Component {
       const color = state.loading ? 'Generate Clicked' : 'Generate';
       return state.done ? (
         <div className="PlaylistManage">
-          <button className="Generate Clicked">DONE</button>
+          <button className="Generate Clicked InactiveButton">DONE</button>
         </div>
       ) : (
         <div className="PlaylistManage">
