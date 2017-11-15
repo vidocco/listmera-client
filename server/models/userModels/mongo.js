@@ -1,6 +1,13 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const url = 'mongodb://localhost:27017/listmera';
+let url;
+if (process.env.MONGODB_URI) {
+  url = `${process.env.MONGODB_URI}/listmera`;
+} else {
+  url = 'mongodb://localhost:27017/listmera';
+}
+
+
 
 function database() {
   return new Promise((resolve, reject) => {
