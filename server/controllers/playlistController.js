@@ -64,7 +64,7 @@ module.exports = {
     const user = await locate(JSON.parse(ctx.request.body).username);
     const playlist = await get(ctx.params.id);
     if (user.length && user[0].username === playlist.adminId) {
-      await generate(playlist, user[0].refresh)
+      await generate(playlist, user[0].refresh, ctx.params.id)
       ctx.status = 201;
     } else if (!playlist.adminId) ctx.status = 400;
     else ctx.status = 401;

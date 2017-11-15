@@ -1,6 +1,8 @@
 const spotify = require('../../secrets/spotifyConf.js');
+const removeAdmin = require('../userModels/removeAdmin.js');
+const expire = require('../playlistModels/setExpiry.js');
 
-async function generatePlaylist(playlist, refresh) {
+async function generatePlaylist(playlist, refresh, identifier) {
   let playlistId;
   let tracks = playlist.tracks.map(el => `spotify:track:${el}`);
   await spotify.setRefreshToken(refresh);
@@ -120,6 +122,11 @@ async function generatePlaylist(playlist, refresh) {
     .catch(e => console.error(e));
   await spotify.addTracksToPlaylist(playlist.adminId, playlistId, tracks)
     .catch(e => console.error(e));
+  await removeAdmin({
+    username: playlist.adminId,
+    id: identifier,
+  });
+  await expire({playlist: identifier, bank: playlist.bank, tracks: playlist.trackId, collabs: playlist.collabs})
 }
 
 module.exports = generatePlaylist;
