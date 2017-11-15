@@ -18,8 +18,8 @@ async function getPlaylist(id, simple) {
       if (details.loud) playlist.loud = 'Loud';
       if (details.instrumental) playlist.instrumental = 'Instrumental';
       if (details.live) playlist.live = 'Live';
-      if (details.mood) playlist.mood = 'Happy';
-      if (details.mood === 'false') playlist.mood = 'Sad';
+      if (details.mood === '1') playlist.mood = 'Happy';
+      if (details.mood === '0') playlist.mood = 'Sad';
       if (details.major) playlist.major = 'Major';
       if (details.minor) playlist.minor = 'Minor';
       client.smembers(`tracks:${details.tracks}`, async (err, tracks) => {

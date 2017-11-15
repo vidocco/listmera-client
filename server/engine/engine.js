@@ -9,35 +9,35 @@ module.exports = {
     return features
       .filter(el => {
         if (source.dance) {
-          return el.danceability >= source.dance;
+          return el.danceability >= Number(source.dance);
         } else {
           return true;
         }
       })
       .filter(el => {
         if (source.energy) {
-          return el.energy >= source.energy;
+          return el.energy >= Number(source.energy);
         } else {
           return true;
         }
       })
       .filter(el => {
         if (source.loud) {
-          return el.loudness <= source.loud;
+          return el.loudness <= Number(source.loud);
         } else {
           return true;
         }
       })
       .filter(el => {
         if (source.instrumental) {
-          return el.instrumentalness >= source.instrumental;
+          return el.instrumentalness >= Number(source.instrumental);
         } else {
           return true;
         }
       })
       .filter(el => {
         if (source.live) {
-          return el.liveness >= source.live;
+          return el.liveness >= Number(source.live);
         } else {
           return true;
         }
