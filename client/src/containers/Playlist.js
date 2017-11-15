@@ -55,10 +55,31 @@ class Playlist extends Component {
     this.setState({
       ...this.state,
       loading: true,
-    })
+    });
     fetch(`http://localhost:3000/api${window.location.pathname}`, {
       method: 'POST',
       body: window.localStorage.getItem('user'),
+      mode: 'cors',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => window.location = '/generated')
+      .catch(e => console.error(e));
+  }
+
+  copy = () => {
+    this.setState({
+      ...this.state,
+      loading: true,
+    });
+    const body = {
+      ...JSON.parse(window.localStorage.getItem('user')),
+      copy: true,
+    }
+    fetch(`http://localhost:3000/api${window.location.pathname}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
       mode: 'cors',
       header: {
         'Accept': 'application/json',
@@ -114,8 +135,7 @@ class Playlist extends Component {
       ? 'Collabed'
       : '';
     if (state.isAdmin) {
-      console.log(state.loading);
-      const text = state.loading ? (<img className="ButtonLoad" src={require('../assets/circle.png')}/>) : 'GENERATE';
+      const text = state.loading ? (<img alt="LOADING" className="ButtonLoad" src={require('../assets/circle.png')}/>) : 'GENERATE';
       const color = state.loading ? 'Generate Clicked' : 'Generate';
       return (
         <div className="PlaylistManage">
@@ -124,7 +144,9 @@ class Playlist extends Component {
         </div>
       )
     } else {
-      return (
+      return state.done ? (
+        <button className="Generate" onClick={this.copy}>COPY</button>
+      ) : (
         <button className={'Collaborate ' + buttonClass} onClick={this.collaborate}>COLLABORATE</button>
       );
     }

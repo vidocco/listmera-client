@@ -63,11 +63,15 @@ module.exports = {
   generate: async function (ctx) {
     const user = await locate(JSON.parse(ctx.request.body).username);
     const playlist = await get(ctx.params.id);
+    const copy = JSON.parse(ctx.request.body).copy
     if (user.length && user[0].username === playlist.adminId) {
       await generate(playlist, user[0].refresh, ctx.params.id)
       ctx.status = 201;
-    } else if (!playlist.adminId) ctx.status = 400;
-    else ctx.status = 401;
+    } else if (!playlist.adminId) {
+      ctx.status = 400;
+    } else if (copy) {
+      await generate(playlist, user[0].refresh, ctx.params.id, copy, user[0])
+    } else ctx.status = 401;
   },
   delete: async function (ctx) {
     const playlist = await get(ctx.params.id);

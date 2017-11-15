@@ -22,6 +22,7 @@ async function getPlaylist(id, simple) {
       if (details.mood === '0') playlist.mood = 'Sad';
       if (details.major) playlist.major = 'Major';
       if (details.minor) playlist.minor = 'Minor';
+      if (details.done) playlist.done = true;
       client.smembers(`tracks:${details.tracks}`, async (err, tracks) => {
         if (err) reject(err);
         playlist.length = tracks.length;

@@ -2,7 +2,7 @@ const spotify = require('../../secrets/spotifyConf.js');
 const removeAdmin = require('../userModels/removeAdmin.js');
 const expire = require('../playlistModels/setExpiry.js');
 
-async function generatePlaylist(playlist, refresh, identifier) {
+async function generatePlaylist(playlist, refresh, identifier, copy, copier) {
   let playlistId;
   let tracks = playlist.tracks.map(el => `spotify:track:${el}`);
   await spotify.setRefreshToken(refresh);
@@ -14,7 +14,6 @@ async function generatePlaylist(playlist, refresh, identifier) {
   if (!playlist.strict) {
     let seed;
     let attributes;
-    // console.log(Object.keys(playlist));
     if (playlist.tracks.length <= 5) seed = playlist.tracks;
     else seed = playlist.tracks.slice(0,5);
     const keys = [
@@ -115,18 +114,33 @@ async function generatePlaylist(playlist, refresh, identifier) {
       .then(res => res.body.tracks.map(el => `spotify:track:${el.id}`));
     tracks = tracks.concat(recommended);
   }
-  await spotify.createPlaylist(playlist.adminId, playlist.name, {description: 'powered by listmera'})
+  if (!copy) {
+    await spotify.createPlaylist(playlist.adminId, playlist.name, {description: 'powered by listmera'})
+      .then(res => {
+        playlistId = res.body.id;
+      })
+      .catch(e => console.error(e));
+    await spotify.addTracksToPlaylist(playlist.adminId, playlistId, tracks)
+      .catch(e => console.error(e));
+    await removeAdmin({
+      username: playlist.adminId,
+      id: identifier,
+    });
+    await expire({
+      playlist: identifier,
+      bank: playlist.bank,
+      tracks: playlist.trackId,
+      collabs: playlist.collabs
+    });
+  } else {
+    await spotify.createPlaylist(copier.username, playlist.name, {description: 'powered by listmera'})
     .then(res => {
       playlistId = res.body.id;
     })
     .catch(e => console.error(e));
-  await spotify.addTracksToPlaylist(playlist.adminId, playlistId, tracks)
-    .catch(e => console.error(e));
-  await removeAdmin({
-    username: playlist.adminId,
-    id: identifier,
-  });
-  await expire({playlist: identifier, bank: playlist.bank, tracks: playlist.trackId, collabs: playlist.collabs})
+    await spotify.addTracksToPlaylist(copier.username, playlistId, tracks)
+      .catch(e => console.error(e));
+  }
 }
 
 module.exports = generatePlaylist;

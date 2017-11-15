@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import query from 'query-string';
 
 import { connect } from 'react-redux';
 import { login } from '../actions';
 
 import Header from '../components/Header';
-import Loader from '../components/Loader';
 import '../App.css';
 
 class Generated extends Component {
