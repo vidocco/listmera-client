@@ -131,21 +131,32 @@ class Playlist extends Component {
   }
 
   renderButtons = (state) => {
-    const buttonClass = state.collabers.indexOf(JSON.parse(window.localStorage.getItem('user')).name) >= 0 
-      ? 'Collabed'
-      : '';
+    let buttonClass;
+    if (JSON.parse(window.localStorage.getItem('user')) === null) {
+      buttonClass = 'Collabed';
+    } else {
+      buttonClass = state.collabers.indexOf(JSON.parse(window.localStorage.getItem('user')).name) >= 0 
+        ? 'Collabed'
+        : '';
+    }
     if (state.isAdmin) {
       const text = state.loading ? (<img alt="LOADING" className="ButtonLoad" src={require('../assets/circle.png')}/>) : 'GENERATE';
       const color = state.loading ? 'Generate Clicked' : 'Generate';
-      return (
+      return state.done ? (
         <div className="PlaylistManage">
           <button className="Create Delete" onClick={this.delete}><img className="DeleteIco"alt="DELETE" src={require('../assets/delete.png')}/></button>
           <button className={color} onClick={this.generate}>{text}</button>
         </div>
+      ) : (
+        <div className="PlaylistManage">
+          <button className="Generate Clicked">"DONE"</button>
+        </div>
       )
     } else {
+      const text = state.loading ? (<img alt="LOADING" className="ButtonLoad" src={require('../assets/circle.png')}/>) : 'COPY';
+      const color = state.loading ? 'Generate Clicked' : 'Generate';
       return state.done ? (
-        <button className="Generate" onClick={this.copy}>COPY</button>
+        <button className={color} onClick={this.copy}>{text}</button>
       ) : (
         <button className={'Collaborate ' + buttonClass} onClick={this.collaborate}>COLLABORATE</button>
       );
