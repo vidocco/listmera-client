@@ -1,5 +1,9 @@
-const redis = require('redis');
-const client = redis.createClient();
+let client;
+if (process.env.REDIS_URL) {
+  client = require('redis').createClient(process.env.REDIS_URL);
+} else {
+  client = require('redis').createClient();
+}
 
 client.on('error', err => {
   console.error(err);
