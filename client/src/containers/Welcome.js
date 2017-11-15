@@ -12,7 +12,7 @@ class Welcome extends Component {
   constructor(props) {
     super(props);
     const code = {code: query.parse(window.location.search).code};
-    fetch('http://localhost:3000/api/register', {
+    fetch('https://listmera.herokuapp.com/api/register', {
       method: 'POST',
       body: JSON.stringify(code),
       mode: 'cors',

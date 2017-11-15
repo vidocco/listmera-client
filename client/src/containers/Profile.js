@@ -18,7 +18,7 @@ class Profile extends Component {
       const headers = new Headers({
         User: user.username,
       })
-      fetch('http://localhost:3000/api/me', {
+      fetch('https://listmera.herokuapp.com/api/me', {
         method: 'GET',
         headers: headers
       }).then(res => res.json())

@@ -21,7 +21,7 @@ class Create extends Component {
   }
 
   createPlaylist(listName, selectedValues, selectedTempo) {
-    fetch('http://localhost:3000/api/playlist', {
+    fetch('https://listmera.herokuapp.com/api/playlist', {
       method: 'POST',
       body: JSON.stringify({username: this.props.user.username, name: listName, values: selectedValues, tempo: selectedTempo}),
       mode: 'cors',

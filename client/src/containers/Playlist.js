@@ -11,7 +11,7 @@ import Track from '../components/Track';
 class Playlist extends Component {
   constructor(props) {
     super(props);
-    fetch(`http://localhost:3000/api${window.location.pathname}`)
+    fetch(`https://listmera.herokuapp.com/api${window.location.pathname}`)
       .then(res => {
         if (res.status === 404) return false;
         return res.json()
@@ -37,7 +37,7 @@ class Playlist extends Component {
   }
 
   collaborate () {
-    fetch(`http://localhost:3000/api${window.location.pathname}`, {
+    fetch(`https://listmera.herokuapp.com/api${window.location.pathname}`, {
       method: 'PUT',
       body: window.localStorage.getItem('user'),
       mode: 'cors',
@@ -56,7 +56,7 @@ class Playlist extends Component {
       ...this.state,
       loading: true,
     });
-    fetch(`http://localhost:3000/api${window.location.pathname}`, {
+    fetch(`https://listmera.herokuapp.com/api${window.location.pathname}`, {
       method: 'POST',
       body: window.localStorage.getItem('user'),
       mode: 'cors',
@@ -77,7 +77,7 @@ class Playlist extends Component {
       ...JSON.parse(window.localStorage.getItem('user')),
       copy: true,
     }
-    fetch(`http://localhost:3000/api${window.location.pathname}`, {
+    fetch(`https://listmera.herokuapp.com/api${window.location.pathname}`, {
       method: 'POST',
       body: JSON.stringify(body),
       mode: 'cors',
@@ -94,7 +94,7 @@ class Playlist extends Component {
     const sure = window.confirm(`Hey ${user.name.split(' ')[0]}, are you sure you want to delete this playlist?`);
     if (sure) {
       const body = {username: user.username};
-      fetch(`http://localhost:3000/api${window.location.pathname}`, {
+      fetch(`https://listmera.herokuapp.com/api${window.location.pathname}`, {
         method: 'DELETE',
         body: JSON.stringify(body),
         mode: 'cors',
