@@ -15,6 +15,7 @@ import Welcome from './containers/Welcome';
 import Create from './containers/Create';
 import Playlist from './containers/Playlist';
 import Profile from './containers/Profile';
+import Generated from './containers/Generated';
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class App extends Component {
           <Route path="/welcome" component={Welcome} />
           <Route path="/me" component={Profile} />
           <Route path="/playlist/:id" component={Playlist} />
+          <Route path="/generated" component={Generated} />
         </div>
       </Router>
     );

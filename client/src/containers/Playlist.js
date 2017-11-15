@@ -51,7 +51,11 @@ class Playlist extends Component {
       .catch(e => console.error(e));
   }
 
-  generate () {
+  generate = () => {
+    this.setState({
+      ...this.state,
+      loading: true,
+    })
     fetch(`http://localhost:3000/api${window.location.pathname}`, {
       method: 'POST',
       body: window.localStorage.getItem('user'),
@@ -60,7 +64,7 @@ class Playlist extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(res => console.log(res))
+    }).then(res => window.location = '/generated')
       .catch(e => console.error(e));
   }
 
@@ -105,15 +109,18 @@ class Playlist extends Component {
     })
   }
 
-  renderButtons(state) {
+  renderButtons = (state) => {
     const buttonClass = state.collabers.indexOf(JSON.parse(window.localStorage.getItem('user')).name) >= 0 
-    ? 'Collabed'
-    : '';
+      ? 'Collabed'
+      : '';
     if (state.isAdmin) {
+      console.log(state.loading);
+      const text = state.loading ? (<img className="ButtonLoad" src={require('../assets/circle.png')}/>) : 'GENERATE';
+      const color = state.loading ? 'Generate Clicked' : 'Generate';
       return (
         <div className="PlaylistManage">
           <button className="Create Delete" onClick={this.delete}><img className="DeleteIco"alt="DELETE" src={require('../assets/delete.png')}/></button>
-          <button className="Generate" onClick={this.generate}>GENERATE</button>
+          <button className={color} onClick={this.generate}>{text}</button>
         </div>
       )
     } else {
@@ -137,9 +144,12 @@ class Playlist extends Component {
         const buttons = this.renderButtons(state);
         const tracks = this.renderTracks(state.tracks);
         const name = state.name;
-        const admin = state.admin;
+        const admin = state.admin.split(' ')[0];
         const collabers = (state.collabers.filter(el => el !== admin).length > 0)
-        ? ` with the help of ${state.collabers.filter(el => el !== admin).join(', ')}`
+        ? ` with the help of ${state.collabers
+          .map(el => el !== null ? el.split(' ')[0] : null)
+          .filter(el => (el !== null && el !== admin) ? true : false)
+          .join(', ')}`
         : ' and in need of collaborators';
         const extra = (state.tracks.length === 0)
         ? (<p className="MoreSongs">this playlist needs a little help. Come on, click that button!</p>)

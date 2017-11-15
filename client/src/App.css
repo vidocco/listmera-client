@@ -581,3 +581,20 @@ li {
 .SliderWrap > p {
   margin-bottom: 35px;
 }
+
+.ButtonLoad {
+  height: 35px;
+  margin: auto;
+  margin-top: 3px;
+  animation: Loading infinite 2s linear;
+}
+
+.Clicked {
+  transition: background-color 0.5s;
+  background-color: grey;
+}
+
+@keyframes Loading {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
