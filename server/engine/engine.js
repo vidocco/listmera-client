@@ -43,21 +43,21 @@ module.exports = {
         }
       })
       .filter(el => {
-        if (source.mood) {
+        if (Number(source.mood)) {
           return el.valence >= 0.5;
-        } else if (source.mood === 0) {
+        } else if (Number(source.mood) === 0) {
           return el.valence <= 0.5;
         } else {
           return true;
         }
       })
       .filter(el => {
-        if (source.major && source.minor === 0) {
+        if (Number(source.major) && Number(source.minor)) {
           return true;
-        } else if (source.major) {
-          return el.mode;
-        } else if (source.minor === 0) {
-          return el.mode === 0;
+        } else if (Number(source.major)) {
+          return Number(el.mode);
+        } else if (Number(source.minor)) {
+          return Number(el.mode) === 0;
         } else {
           return true;
         }
@@ -74,9 +74,9 @@ module.exports = {
   parse (values, tempo) {
     const res = {};
     if (~values.indexOf('Strict')) {
-      res.strict = true;
+      res.strict = 1;
     } else {
-      res.strict = false;
+      res.strict = 0;
     }
     if (~values.indexOf('Dance')) {
       res.dance = 0.7;
@@ -118,7 +118,7 @@ module.exports = {
       res.major = '';
     }
     if (~values.indexOf('Minor')) {
-      res.minor = 0;
+      res.minor = 1;
     } else {
       res.minor = '';
     }
