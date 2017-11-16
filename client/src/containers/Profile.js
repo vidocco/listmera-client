@@ -17,6 +17,7 @@ class Profile extends Component {
     } else {
       const headers = new Headers({
         User: user.username,
+        Origin: 'http://listmera.rocks',
       })
       fetch('https://listmera.herokuapp.com/api/me', {
         method: 'GET',

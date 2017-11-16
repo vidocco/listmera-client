@@ -11,7 +11,9 @@ import Track from '../components/Track';
 class Playlist extends Component {
   constructor(props) {
     super(props);
-    fetch(`https://listmera.herokuapp.com/api${window.location.pathname}`)
+    fetch(`https://listmera.herokuapp.com/api${window.location.pathname}`, {
+      'Origin': 'http://listmera.rocks',
+    })
       .then(res => {
         if (res.status === 404) return false;
         return res.json()
@@ -44,6 +46,7 @@ class Playlist extends Component {
       header: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Origin': 'http://listmera.rocks',
       },
     }).then(res => {
       if (res.status === 200) window.location.reload();
@@ -63,6 +66,7 @@ class Playlist extends Component {
       header: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Origin': 'http://listmera.rocks',
       },
     }).then(res => window.location = '/generated')
       .catch(e => console.error(e));
@@ -84,6 +88,7 @@ class Playlist extends Component {
       header: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Origin': 'http://listmera.rocks',
       },
     }).then(res => window.location = '/generated')
       .catch(e => console.error(e));
@@ -101,6 +106,7 @@ class Playlist extends Component {
         header: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Origin': 'http://listmera.rocks',
         },
       }).then(res => {
         const track = window.location.pathname.split('/')[2];
@@ -177,7 +183,7 @@ class Playlist extends Component {
         const buttons = this.renderButtons(state);
         const tracks = this.renderTracks(state.tracks);
         const name = state.name;
-        const admin = state.admin.split(' ')[0];
+        const admin = state.admin ? state.admin.split(' ')[0] : 'N/A';
         const collabers = (state.collabers.filter(el => el !== admin).length > 0)
         ? ` with the help of ${state.collabers
           .map(el => el !== null ? el.split(' ')[0] : null)

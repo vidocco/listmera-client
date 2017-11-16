@@ -28,6 +28,7 @@ class Create extends Component {
       header: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Origin': 'http://listmera.rocks',
       },
     }).then(res => res.json())
       .then(res => {
