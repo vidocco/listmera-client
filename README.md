@@ -49,6 +49,7 @@ In order to test this web-app you will need to run the compatible backend, visit
 - Editable profile info.
 - Discover functionality that will propose 500 new songs based on 5  or more songs you like.
 - Asking for further information on register if information is missing.
+- Testing!
 
 
 ## Sending Feedback
