@@ -1,0 +1,19 @@
+@import '../../index'
+
+.LoaderWrap
+  height: 150px
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 200px
+
+
+.Loader
+  height: 100%
+  animation: Loading infinite 2s linear
+
+
+@keyframes Loading
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }

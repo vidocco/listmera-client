@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux';
 import { login } from './actions';
 
-import './App.css';
+import './App.sass';
 
 import Main from './containers/Main';
 import Access from './containers/Access';

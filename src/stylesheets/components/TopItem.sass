@@ -1,0 +1,48 @@
+@import '../../index'
+
+.IconWrap
+  width: 310px
+  height: 310px
+  position: absolute
+  display: flex
+  flex-wrap: wrap
+
+.PlaylistImg
+  width: 50%
+  height: 50%
+
+.PlaylistImg.Solo
+  height: 100%
+  width: 100%
+
+.TopPlaylistItem
+  width: 310px
+  height: 310px
+  margin: 5px
+  margin-top: 0
+  display: flex
+  flex-shrink: 0
+  cursor: pointer
+  margin-bottom: 10px
+  transition: box-shadow 0.35s ease
+
+.TopPlaylistItem:hover > .PlayButton
+  height: 310px
+  width: 310px
+  background-repeat: no-repeat
+  background-size: 150px
+  background-position: center
+  position: absolute
+  z-index: 2
+  transition: background-color 0.35s ease
+  background-color: rgba(0,0,0,0.4)
+  background-image: url('../../assets/play-button.png');
+
+.PlaylistDetails
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  align-items: flex-start
+  width: 100%
+  z-index: 1
+  background: -webkit-linear-gradient(bottom,rgba(0,0,0,1),rgba(0,0,0,0))
