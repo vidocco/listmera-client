@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import ReactDom from 'react-dom';
 
 import Header from '../components/Header';
-import '../App.css';
+import '../stylesheets/containers/Access.sass';
 
 class Access extends Component {
 

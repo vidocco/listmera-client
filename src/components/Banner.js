@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/components/Banner.sass'
 
 import { connect } from 'react-redux';
 

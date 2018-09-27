@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/components/TopItem.sass';
 
 class TopItem extends Component {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/containers/Create.sass';
 
 import { connect } from 'react-redux';
 import { set } from '../actions'

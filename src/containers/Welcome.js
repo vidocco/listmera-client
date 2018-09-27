@@ -6,7 +6,7 @@ import { login } from '../actions';
 
 import Header from '../components/Header';
 import Loader from '../components/Loader';
-import '../App.css';
+// import '../App.sass';
 
 class Welcome extends Component {
   constructor(props) {

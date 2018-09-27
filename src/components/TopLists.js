@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/components/TopList.sass';
 
 import { Link } from 'react-router-dom';
 
