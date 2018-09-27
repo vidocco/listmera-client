@@ -1,2 +1,12 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Production
+build/
+
+# Environment
 .env
+
+# Misc
+.DS_Store
+npm-debug.log*
