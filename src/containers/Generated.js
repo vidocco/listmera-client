@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { login } from '../actions';
 
 import Header from '../components/Header';
-// import '../App.sass';
+import '../stylesheets/containers/Generated.sass';
 
 class Generated extends Component {
 

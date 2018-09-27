@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import '../App.sass';
+import '../stylesheets/containers/Playlist.sass';
 
 import { connect } from 'react-redux';
 import { unset } from '../actions'
@@ -127,7 +127,7 @@ class Playlist extends Component {
 
   renderTracks(tracks) {
     return tracks.map((el, i) => {
-      return <Track key={i} 
+      return <Track key={i}
         img={el.image}
         title={el.name}
         artists={el.artists}

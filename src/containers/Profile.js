@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import '../App.sass';
+import '../stylesheets/containers/Profile.sass';
 
 import { connect } from 'react-redux';
 import { logout } from '../actions'
