@@ -136,7 +136,6 @@ class Playlist extends Component {
 
   renderTracks(tracks) {
     return tracks.map((el, i) => {
-<<<<<<< HEAD
       return <Track key={i}
         img={el.image}
         title={el.name}
@@ -144,19 +143,6 @@ class Playlist extends Component {
         album={el.album}
         popularity={el.popularity}/>
     })
-=======
-      return (
-        <Track
-          key={i}
-          img={el.image}
-          title={el.name}
-          artists={el.artists}
-          album={el.album}
-          popularity={el.popularity}
-        />
-      );
-    });
->>>>>>> d71a7d8771567a347ea4cbae7b556dcaec9ff7cd
   }
 
   renderButtons = state => {

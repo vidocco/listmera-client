@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import '../stylesheets/components/Header.sass';
 import { connect } from 'react-redux';
-
 import {Link} from 'react-router-dom';
+
+import '../stylesheets/components/Header.sass';
+import logo from '../assets/listmera.png';
 
 class Header extends Component {
 
@@ -11,19 +12,21 @@ class Header extends Component {
   renderLogin(user) {
     if (!user.name) {
       return (
-        <Link to="/access">
-          <p>login</p>
-        </Link>
+        <div className='header_profilesample'>
+          <Link to="/access">
+            <p className='header_profilesample_name'>LOG IN</p>
+          </Link>
+        </div>
       );
     } else {
       return (
-        <div className="ProfileSample">
-          <Link style={{ textDecoration: 'none' }} to="/me">
-            <p>{this.props.user.name.split(' ')[0]}</p>
-          </Link>
-          <div className="ProfilePicWrapper">
-            <img alt="yourpic" className="ProfilePic" src={this.props.user.picture}/>
+        <div className="header_profilesample">
+          <div className="header_profilesample_profilepicwrapper">
+            <img alt="Your pic" className="header_profilesample_profilepicwrapper_profilepic" src={this.props.user.picture}/>
           </div>
+          <Link to="/me">
+            <p className='header_profilesample_name'>{this.props.user.name.split(' ')[0]}</p>
+          </Link>
         </div>
       );
     }
@@ -32,19 +35,22 @@ class Header extends Component {
   render() {
     const login = this.renderLogin(this.props.user);
     return (
-        <nav className="NavBar">
-          <div className="MaxWidth">
-            <div className="Logotype">
-              <div className="LogoWrap">
+        <div className="navbar">
+          <div className="navbar_wrapper">
+            <div className="navbar_wrapper_logotypeinfo">
+              <div className="navbar_wrapper_logotypeinfo_wrapper">
                 <Link to="/">
-                    <img alt="logo" className="Logo" src={require('../assets/listmera.png')}/>
+                  <img alt="logo" className="navbar_wrapper_logotypeinfo_wrapper_logo" src={logo} />
                 </Link>
+                <div className='navbar_wrapper_logotypeinfo_wrapper_name'>Listmera</div>
               </div>
-              <h1>Listmera</h1>
             </div>
-            {login}
+
+            <div className='navbar_wrapper_logotypeinfo_login'>
+              {login}
+            </div>
           </div>
-        </nav>
+        </div>
     );
   }
 }

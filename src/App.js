@@ -26,11 +26,11 @@ class App extends Component {
       this.props.login(user);
     }
   }
-  
+
   render() {
     return (
       <Router>
-        <div className="Wrapper">
+        <div className="app_wrapper">
           <Route exact path="/" component={Main} />
           <Route path="/create" component={Create} />
           <Route path="/access" component={Access} />
