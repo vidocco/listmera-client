@@ -11,17 +11,18 @@ import '../App.css';
 class Welcome extends Component {
   constructor(props) {
     super(props);
-    const code = {code: query.parse(window.location.search).code};
-    fetch('https://listmera.herokuapp.com/api/register', {
+    const code = { code: query.parse(window.location.search).code };
+    fetch(process.env.REACT_APP_API_URL + '/register', {
       method: 'POST',
       body: JSON.stringify(code),
       mode: 'cors',
       header: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Origin': 'http://listmera.rocks',
-      },
-    }).then(res => res.json())
+        Origin: process.env.REACT_APP_CLIENT_URL
+      }
+    })
+      .then(res => res.json())
       .then(res => {
         res.name = res.name ? res.name : res.username;
         window.localStorage.setItem('user', JSON.stringify(res));
@@ -30,7 +31,7 @@ class Welcome extends Component {
         this.props.login(res);
       })
       .catch(e => console.error(e));
-    }
+  }
 
   //========================================= RENDERING
 
@@ -42,7 +43,7 @@ class Welcome extends Component {
         <Header />
         <div className="MaxWidthCreate">
           <h1>Welcome {name}</h1>
-          <img alt="you" className="WelcomePicture" src={user.picture}/>
+          <img alt="you" className="WelcomePicture" src={user.picture} />
           <h2>We're glad to have you</h2>
         </div>
       </div>
@@ -50,16 +51,19 @@ class Welcome extends Component {
       <div className="Wrapper">
         <Loader />
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state,
-})
+const mapStateToProps = state => ({
+  user: state
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  login: (user) => dispatch(login(user)),
-})
+const mapDispatchToProps = dispatch => ({
+  login: user => dispatch(login(user))
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Welcome);
