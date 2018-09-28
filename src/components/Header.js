@@ -37,14 +37,12 @@ class Header extends Component {
     return (
         <div className="navbar">
           <div className="navbar_wrapper">
-            <div className="navbar_wrapper_logotypeinfo">
-              <div className="navbar_wrapper_logotypeinfo_wrapper">
+              <div className="navbar_wrapper_logotypeinfo">
                 <Link to="/">
-                  <img alt="logo" className="navbar_wrapper_logotypeinfo_wrapper_logo" src={logo} />
+                  <img alt="logo" className="navbar_wrapper_logotypeinfo_img" src={logo} />
                 </Link>
-                <div className='navbar_wrapper_logotypeinfo_wrapper_name'>Listmera</div>
+                <div className='navbar_wrapper_logotypeinfo_name'>Listmera</div>
               </div>
-            </div>
 
             <div className='navbar_wrapper_logotypeinfo_login'>
               {login}
