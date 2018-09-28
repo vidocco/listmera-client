@@ -5,17 +5,20 @@ a, a:visited
   text-decoration: none
 
 .top_playlist_wrap
-  +flex($direction: column, $justify: center)
+  +flex($direction: row, $justify: center)
+  margin: 0 auto
   width: 100%
+
+.top_playlist_width
+  margin: auto;
 
 .top_playlist_wrap_title
   width: 100%
   text-align: center
   margin-bottom: 10px
   h1
-    font-weight: $medium
-    font-size: 2.5em
+    font-weight: $bold
+    font-size: 2em
 
 .top_playlist_list
-  +flex($justify: center)
-  width: 100%
+  +flex($direction: row, $justify: center, $wrap: wrap)

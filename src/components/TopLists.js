@@ -41,11 +41,13 @@ class TopLists extends Component {
     const playlists = this.renderPlaylists();
     return (
       <div className="top_playlist_wrap">
-          <div className="top_playlist_wrap_title">
-            <h1>{this.props.title}</h1>
-          </div>
-          <div className="top_playlist_list">
-            {playlists}
+          <div className='top_playlist_width'>
+            <div className="top_playlist_wrap_title">
+              <h1>{this.props.title}</h1>
+            </div>
+            <div className="top_playlist_list">
+              {playlists}
+            </div>
           </div>
       </div>
     );
