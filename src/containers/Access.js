@@ -7,7 +7,7 @@ import '../stylesheets/containers/Access.sass';
 class Access extends Component {
 
   redirect() {
-    window.location.href = 'https://listmera.herokuapp.com/api/access';
+    window.location.href = process.env.REACT_APP_API_URL + '/access';
   }
 
   //============ RENDERING
