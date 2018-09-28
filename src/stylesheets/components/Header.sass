@@ -2,55 +2,53 @@
 @import '../../stylesheets/base/variables.sass'
 
 // Header
-.header_profilesample
+.header_profile
   +flex()
   width: 12vw
   a:link, a:visited, a:hover, a:active
     text-decoration: none
     color: $font-color
 
-.header_profilesample_profilepicwrapper
-  height: 40%
-  width: 40%
+.header_profile_img_wrapper
+  +flex($direction: row, $justify: flex-start, $align: center)
+  height: 100%
+  padding: 10px
 
-.header_profilesample_profilepicwrapper_profilepic
-  +flex($direction: row, $justify: center, $align: center)
-  width: 80%
+.header_profile_img
   border-radius: 50%
+  width: 2vw
 
-.header_profilesample_name
+.header_profile_name_wrapper
+  +flex($direction: row, $justify: flex-start, $align: center)
+  padding: 10px
+
+.header_profile_name
   font-size: 1em
 
 // Navbar
 .navbar
-  +flex()
+  +flex($justify: space-between, $align: center)
   height: 10vh
   background-color: rgba(0, 0, 0, 0.5)
   width: 100%
   position: fixed
   z-index: 3
 
-.navbar_wrapper
-  +flex($justify: space-between, $align: center)
-  height: 100%
-  width: 100%
-
-.navbar_wrapper_logotypeinfo
+.navbar_logotype
   +flex()
-  height: 80%
-  margin: 10px 20px
-  a, img
-    display: inline-block
+  width: 20vw
 
-.navbar_wrapper_logotypeinfo_img
-  +flex($direction: row, $justify: center, $align: center)
-  height: 100%
+.navbar_logotype_img_wrapper
+  +flex($direction: row, $justify: flex-start, $align: center)
+  padding: 10px
 
-.navbar_wrapper_logotypeinfo_name
-  +flex($direction: row, $justify: center, $align: center)
+.navbar_wrapper_logotype_name
+  +flex($direction: row, $justify: flex-start, $align: center)
   font-weight: $regular
   font-size: 2em
-  margin: 5px
 
-.navbar_wrapper_logotypeinfo_login
-  +flex($justify: space-between, $align: center)
+.navbar_wrapper_logotype_img
+  width: 3vw
+
+// .navbar_wrapper_logotypeinfo_login
+//   +flex($justify: space-between, $align: center)

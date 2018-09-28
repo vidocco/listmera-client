@@ -12,21 +12,28 @@ class Header extends Component {
   renderLogin(user) {
     if (!user.name) {
       return (
-        <div className='header_profilesample'>
+        <div className='header_profile'>
           <Link to="/access">
-            <p className='header_profilesample_name'>LOG IN</p>
+            <p className='header_profile_name'>LOG IN</p>
           </Link>
         </div>
       );
     } else {
       return (
-        <div className="header_profilesample">
-          <div className="header_profilesample_profilepicwrapper">
-            <img alt="Your pic" className="header_profilesample_profilepicwrapper_profilepic" src={this.props.user.picture}/>
+        <div className='header_profile'>
+          <div className='header_profile_img_wrapper'>
+            <img alt="Your pic"
+                className="header_profile_img"
+                src={this.props.user.picture} />
           </div>
-          <Link to="/me">
-            <p className='header_profilesample_name'>{this.props.user.name.split(' ')[0]}</p>
-          </Link>
+
+          <div className='header_profile_name_wrapper'>
+            <Link to="/me">
+              <div className='header_profile_name'>
+                {this.props.user.name.split(' ')[0]}
+              </div>
+            </Link>
+          </div>
         </div>
       );
     }
@@ -35,20 +42,44 @@ class Header extends Component {
   render() {
     const login = this.renderLogin(this.props.user);
     return (
-        <div className="navbar">
-          <div className="navbar_wrapper">
-              <div className="navbar_wrapper_logotypeinfo">
-                <Link to="/">
-                  <img alt="logo" className="navbar_wrapper_logotypeinfo_img" src={logo} />
-                </Link>
-                <div className='navbar_wrapper_logotypeinfo_name'>Listmera</div>
-              </div>
-
-            <div className='navbar_wrapper_logotypeinfo_login'>
-              {login}
+      <div className='navbar'>
+        <div className='navbar_logotype'>
+          <Link to="/">
+            <div className='navbar_logotype_img_wrapper'>
+              <img alt="logo"
+                  className="navbar_wrapper_logotype_img"
+                  src={logo} />
             </div>
-          </div>
+          </Link>
+
+            <div className='navbar_wrapper_logotype_name'>
+              Listmera
+            </div>
+
+
         </div>
+
+
+        <div className='navbar_login'>
+          {login}
+        </div>
+      </div>
+        // <div className="navbar">
+        //   <div className="navbar_wrapper">
+        //     <div className="navbar_wrapper_logotypeinfo">
+        //       <div className="navbar_wrapper_logotypeinfo_wrapper">
+        //         <Link to="/">
+        //           <img alt="logo" className="navbar_wrapper_logotypeinfo_img" src={logo} />
+        //         </Link>
+        //         <div className='navbar_wrapper_logotypeinfo_name'>Listmera</div>
+        //       </div>
+        //     </div>
+
+        //     <div className='navbar_wrapper_logotypeinfo_login'>
+        //       {login}
+        //     </div>
+        //   </div>
+        // </div>
     );
   }
 }
