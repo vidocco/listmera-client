@@ -1,22 +1,21 @@
 @import '../../index'
+@import '../../stylesheets/base/variables.sass'
 
-.TopPlaylistWrap
-  display: flex
-  flex-direction: column
-  justify-content: center
+a, a:visited
+  text-decoration: none
+
+.top_playlist_wrap
+  +flex($direction: column, $justify: center)
   width: 100%
 
-.MaxWidthList
-  width: 960px
-  margin: auto
-
-.Title
+.top_playlist_wrap_title
   width: 100%
   text-align: center
-  margin-bottom: 40px
+  margin-bottom: 10px
+  h1
+    font-weight: $medium
+    font-size: 2.5em
 
-.TopPlaylistList
-  display: flex
-  flex-wrap: wrap
-  justify-content: flex-start
+.top_playlist_list
+  +flex($justify: center)
   width: 100%
