@@ -1,48 +1,61 @@
 @import '../../index'
+@import '../../stylesheets/base/variables.sass'
 
-.ProfileSample
-  display: flex
-  height: 100%
-  flex-direction: row
-  justify-content: space-around
-  align-items: center
-  width: 90px
+// Header
+.header_profilesample
+  +flex()
+  width: 12vw
+  a:link, a:visited, a:hover, a:active
+    text-decoration: none
+    color: $font-color
 
-.ProfilePicWrapper
-  max-height: 50px
-  max-width: 50px
-  display: flex
-  align-items: center
-  justify-content: center
+.header_profilesample_profilepicwrapper
+  height: 40%
+  width: 40%
 
-.ProfilePic
+.header_profilesample_profilepicwrapper_profilepic
+  +flex($direction: row, $justify: center, $align: center)
   width: 80%
-  border-radius: 100%
+  border-radius: 50%
 
-.NavBar
-  height: 50px
+.header_profilesample_name
+  font-size: 1em
+
+// Navbar
+.navbar
+  +flex()
+  height: 20vh
   background-color: rgba(0, 0, 0, 0.5)
   width: 100%
   position: fixed
   z-index: 3
 
-.MaxWidth
-  display: flex
-  justify-content: space-between
-  align-items: center
+.navbar_wrapper
+  +flex($justify: space-between, $align: center)
   height: 100%
-  max-width: 960px
-  margin: auto
+  width: 100%
 
-.Logotype
-  display: flex
-  justify-content: flex-start
-  align-items: center
+.navbar_wrapper_logotypeinfo
   height: 100%
+  margin: 10px 20px
 
-.LogoWrap
+.navbar_wrapper_logotypeinfo_wrapper
+  +flex()
   height: 70%
-  margin: 0 10px
+  width: 70%
+  margin: 10px
+  a, img
+    display: inline-block
 
-.Logo
+.navbar_wrapper_logotypeinfo_wrapper_logo
+  +flex($direction: row, $justify: center, $align: center)
   height: 100%
+
+.navbar_wrapper_logotypeinfo_wrapper_name
+  +flex($direction: row, $justify: center, $align: center)
+  font-weight: $regular
+  font-size: 2em
+  margin-left: 5px
+
+.navbar_wrapper_logotypeinfo_login
+  +flex($justify: space-between, $align: center)
