@@ -11,17 +11,16 @@ class Access extends Component {
   }
 
   //============ RENDERING
-
   render() {
     return (
-      <div className="Wrapper">
+      <div className='acces_wrapper'>
         <Header />
-        <div className="MaxWidthCreate">
-          <h1>Start creating combined playlists today</h1>
-          <div className="Welcome">
-            <h2 className="Subtitle">Let's make some franken-lists!</h2>
-            <button className="Create" onClick={this.redirect}>login with spotify</button>
-          </div>
+        <div className='acces_wrapper_info'>
+          <h1>Start creating combined playlists today.</h1>
+          <h2>Let's make some franken-lists!</h2>
+          <button className="create" onClick={this.redirect}>
+            Login with Spotify
+          </button>
         </div>
       </div>
     );

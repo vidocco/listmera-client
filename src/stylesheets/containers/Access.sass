@@ -1,30 +1,16 @@
 @import '../../index'
 @import '../base/variables.sass'
+@import '../components/Banner.sass'
 
-.Wrapper
-  display: flex
-  flex-direction: column
+.acces_wrapper
+  +flex($direction: column)
 
-.MaxWidthCreate
-  width: 960px
-  margin: auto
-  margin-top: 70px
+.acces_wrapper_info
   text-align: center
+  h1
+    padding-top: 60px
+  h2
+    font-weight: $regular
 
-.Welcome
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  width: 80%
-  margin: auto
-  margin-bottom: 15px
-
-
-.Welcome > .Create
-  background-color: #1DB954
-  color: white
-  font-weight: 300
-
-.Subtitle
-  text-align: left
+.create
+  @extend .banner_create
