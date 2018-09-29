@@ -16,6 +16,7 @@ import Create from './containers/Create';
 import Playlist from './containers/Playlist';
 import Profile from './containers/Profile';
 import Generated from './containers/Generated';
+import Header from './components/Header';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class App extends Component {
     return (
       <Router>
         <div className="app_wrapper">
+          <Header />
           <Route exact path="/" component={Main} />
           <Route path="/create" component={Create} />
           <Route path="/access" component={Access} />
