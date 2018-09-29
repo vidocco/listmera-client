@@ -25,7 +25,7 @@ class TopLists extends Component {
       const filters = this.formatFilters(el);
       return (
         <Link key={i} to={`/playlist/${el.id}`}>
-          <TopItem cover={el.cover ? el.cover : require('../assets/401991-PCRX9R-407.jpg')}
+          <TopItem cover={el.cover ? el.cover : []}
             title={el.name}
             songs={el.length}
             genres={filters}
