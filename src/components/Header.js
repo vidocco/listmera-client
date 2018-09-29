@@ -53,9 +53,8 @@ class Header extends Component {
             </div>
           </Link>
 
-            <div className='navbar_wrapper_logotype_name'>
-              Listmera |
-            </div>
+            {/* <div className='navbar_wrapper_logotype_name'>
+            </div> */}
             <SearchBar />
         </div>
 
