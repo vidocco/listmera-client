@@ -4,7 +4,7 @@ import '../stylesheets/components/Loader.sass';
 class Loader extends Component {
   render() {
     return (
-      <div class="loader">Loading...</div>
+      <div className={`loader ${this.props.small ? 'small' : ''}`}>Loading...</div>
     );
   }
 }
