@@ -4,7 +4,7 @@
 // Header
 .header_profile
   +flex()
-  width: 6vw
+  width: 7vw
   a:link, a:visited, a:hover, a:active
     text-decoration: none
     color: $font-color
@@ -27,7 +27,7 @@
 // Navbar
 .navbar
   +flex($justify: space-between, $align: center)
-  height: 6vh
+  height: 8vh
   background-color: rgba(0, 0, 0, 0.5)
   width: 100%
   position: fixed
@@ -35,7 +35,7 @@
 
 .navbar_logotype
   +flex()
-  width: 20vw
+  width: 40vw
 
 .navbar_logotype_img_wrapper
   +flex($direction: row, $justify: flex-start, $align: center)
@@ -49,5 +49,15 @@
 .navbar_wrapper_logotype_img
   width: 2vw
 
-// .navbar_wrapper_logotypeinfo_login
-//   +flex($justify: space-between, $align: center)
+
+// SearchBar component
+.search_bar
+  height: 3vh
+  width: 20vw
+  margin: 10px
+  background-color: $font-color
+  border-radius: 10px
+  border: none
+  padding: 5px
+  &:focus
+    outline: 0

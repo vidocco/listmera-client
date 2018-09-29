@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import '../stylesheets/components/Header.sass';
+import SearchBar from '../components/SearchBar';
 import logo from '../assets/listmera.png';
 
 class Header extends Component {
@@ -53,10 +54,9 @@ class Header extends Component {
           </Link>
 
             <div className='navbar_wrapper_logotype_name'>
-              Listmera
+              Listmera |
             </div>
-
-
+            <SearchBar />
         </div>
 
 
@@ -64,22 +64,6 @@ class Header extends Component {
           {login}
         </div>
       </div>
-        // <div className="navbar">
-        //   <div className="navbar_wrapper">
-        //     <div className="navbar_wrapper_logotypeinfo">
-        //       <div className="navbar_wrapper_logotypeinfo_wrapper">
-        //         <Link to="/">
-        //           <img alt="logo" className="navbar_wrapper_logotypeinfo_img" src={logo} />
-        //         </Link>
-        //         <div className='navbar_wrapper_logotypeinfo_name'>Listmera</div>
-        //       </div>
-        //     </div>
-
-        //     <div className='navbar_wrapper_logotypeinfo_login'>
-        //       {login}
-        //     </div>
-        //   </div>
-        // </div>
     );
   }
 }
