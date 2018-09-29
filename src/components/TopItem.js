@@ -5,22 +5,15 @@ class TopItem extends Component {
 
   //========================================= RENDERING
   renderCover(cover) {
-    if (Array.isArray(cover)) {
-      return (
+      return(
         <div className="topitem_iconwrap">
-          <img alt="album cover" className="playlist_img_list" src={this.props.cover[0]}/>
-          <img alt="album cover" className="playlist_img_list" src={this.props.cover[1] || require('../assets/music-albums.png')}/>
-          <img alt="album cover" className="playlist_img_list" src={this.props.cover[2] || require('../assets/music-albums.png')}/>
-          <img alt="album cover" className="playlist_img_list" src={this.props.cover[3] || require('../assets/music-albums.png')}/>
+        {this.props.cover.map(cover => {
+          return (
+          <img alt='album cover' className="playlist_img_list" src={cover}/>
+          )
+        })}
         </div>
       )
-    } else {
-      return (
-        <div className="topitem_iconwrap">
-          <img alt="album cover" className="playlist_img_solo" src={this.props.cover}/>
-        </div>
-      )
-    }
   }
 
   render() {
