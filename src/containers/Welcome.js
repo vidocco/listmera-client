@@ -34,21 +34,22 @@ class Welcome extends Component {
   }
 
   //========================================= RENDERING
-
   render() {
     const user = this.props.user;
     const name = user.name ? user.name : user.username;
-    return this.loaded ? (
-      <div className="Wrapper">
+    return this.loaded
+    ? (
+      <div className="acces_wrapper">
         <Header />
-        <div className="MaxWidthCreate">
+        <div className="acces_wrapper_info">
           <h1>Welcome {name}</h1>
-          <img alt="you" className="WelcomePicture" src={user.picture} />
-          <h2>We're glad to have you</h2>
+          <img alt="you" className="welcome_picture" src={user.picture} />
+          <h2>We're glad to have you. 🎉</h2>
         </div>
       </div>
-    ) : (
-      <div className="Wrapper">
+    )
+    : (
+      <div className="wrapper">
         <Loader />
       </div>
     );

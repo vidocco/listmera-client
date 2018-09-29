@@ -1,7 +1,13 @@
 @import '../../index'
-
-// Wrapper & MaxWidthCreate
+@import '../base/variables.sass'
 @import '../containers/Access.sass'
 
-.WelcomePicture
-  border-radius: 5px
+.acces_wrapper
+  @extends .acces_wrapper
+  margin: 0 auto
+  align: center
+  h1, h2
+    @extends .acces_wrapper_info
+
+.welcome_picture
+  border-radius: 10px
