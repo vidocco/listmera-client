@@ -41,25 +41,27 @@ class Profile extends Component {
   };
 
   //========================================= RENDERING
-
   renderProfile(state) {
     if (state) {
       return (
-        <div className="MaxWidthCreate">
-          <div className="ProfileWrapper">
-            <div className="ProfileImage">
-              <img alt="you" className="WelcomePicture" src={this.state.picture} />
+        <div>
+          <div className='profile'>
+            <div className='profile_img'>
+              <img alt="you" className="welcome_picture" src={this.state.picture} />
             </div>
-            <div className="ProfileDetails">
-              <h3>Name: {this.state.name}</h3>
-              <h3>e-mail: {this.state.email}</h3>
-              <h3>Username: {this.state.username}</h3>
-              <a onClick={this.logout}>
-                <p>log out</p>
-              </a>
+
+            <div className='profile_info'>
+              <h5>USER</h5>
+              <h3>{this.state.name}</h3>
+              <div className='profile_info_logout'>
+                <button onClick={this.logout}>Log Out</button>
+              </div>
             </div>
           </div>
-          <TopLists content={this.state.adminOf} title="Your Playlists" />
+
+          <div>
+            <TopLists content={this.state.adminOf} title="Your Playlists" />
+          </div>
         </div>
       );
     } else {
@@ -82,7 +84,4 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Profile);
+export default connect(null, mapDispatchToProps)(Profile);
