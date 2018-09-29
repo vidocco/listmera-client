@@ -43,7 +43,9 @@ class Welcome extends Component {
         <Header />
         <div className="acces_wrapper_info">
           <h1>Welcome {name}</h1>
-          <img alt="you" className="welcome_picture" src={user.picture} />
+          <div className='picture_wrapper'>
+            <img alt="you" className="welcome_picture" src={user.picture} />
+          </div>
           <h2>We're glad to have you. 🎉</h2>
         </div>
       </div>

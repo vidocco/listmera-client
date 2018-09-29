@@ -6,8 +6,15 @@
   @extends .acces_wrapper
   margin: 0 auto
   align: center
+
+.acces_wrapper_info
+  +flex($direction: column, $justify: center, $align:center)
   h1, h2
     @extends .acces_wrapper_info
+
+.picture_wrapper
+  +flex($direction: column, $justify: center, $align:center)
+  width: 20%
 
 .welcome_picture
   border-radius: 10px
