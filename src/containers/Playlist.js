@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../stylesheets/containers/Playlist.sass';
+import '../stylesheets/components/Loader.sass';
 
 import { connect } from 'react-redux';
 import { unset } from '../actions';
@@ -133,7 +134,6 @@ class Playlist extends Component {
   };
 
   //========================================= RENDERING
-
   renderTracks(tracks) {
     return tracks.map((el, i) => {
       return <Track key={i}
@@ -157,19 +157,21 @@ class Playlist extends Component {
     }
     if (state.isAdmin) {
       const text = state.loading ? (
-        <img alt="LOADING" className="ButtonLoad" src={require('../assets/circle.png')} />
+        // <img alt="LOADING" className="generate_button" src={require('../assets/circle.png')} />
+          <Loader small />
+
       ) : (
         'GENERATE'
       );
-      const color = state.loading ? 'Generate Clicked' : 'Generate';
+      const color = state.loading ? 'generate clicked' : 'generate';
       return state.done ? (
-        <div className="PlaylistManage">
-          <button className="Generate Clicked InactiveButton">DONE</button>
+        <div className="playlist_manage">
+          <button className="generate clicked inactive_button">DONE</button>
         </div>
       ) : (
-        <div className="PlaylistManage">
-          <button className="Create Delete" onClick={this.delete}>
-            <img className="DeleteIco" alt="DELETE" src={require('../assets/delete.png')} />
+        <div className="playlist_manage">
+          <button className="Create delete" onClick={this.delete}>
+            <img className="delete_img" alt="DELETE" src={require('../assets/delete.png')} />
           </button>
           <button className={color} onClick={this.generate}>
             {text}
@@ -178,11 +180,11 @@ class Playlist extends Component {
       );
     } else {
       const text = state.loading ? (
-        <img alt="LOADING" className="ButtonLoad" src={require('../assets/circle.png')} />
+        <img alt="LOADING" className="loader" src={require('../assets/circle.png')} />
       ) : (
         'COPY'
       );
-      const color = state.loading ? 'Generate Clicked' : 'Generate';
+      const color = state.loading ? 'generate clicked' : 'generate';
       return state.done ? (
         <button className={color} onClick={this.copy}>
           {text}
@@ -219,14 +221,14 @@ class Playlist extends Component {
             : ' and in need of collaborators';
         const extra =
           state.tracks.length === 0 ? (
-            <p className="MoreSongs">
-              this playlist needs a little help. Come on, click that button!
+            <p className="more_songs">
+              This playlist needs a little help. Come on, click that button!
             </p>
           ) : (
-            <p className="MoreSongs">{`... making that ${this.state.length} songs in total`}</p>
+            <p className="more_songs">{`... making that ${this.state.length} songs in total`}</p>
           );
         return (
-          <div className="MaxWidthCreate">
+          <div className="render_content">
             <div className="PlaylistTitleWrapper">
               <div className="PlaylistTitle">
                 <h1>{name}</h1>
@@ -247,7 +249,7 @@ class Playlist extends Component {
   render() {
     const content = this.renderContent(this.state);
     return (
-      <div className="Wrapper">
+      <div className="wrapper">
         <Header />
         {content}
       </div>
@@ -259,7 +261,4 @@ const mapDispatchToProps = dispatch => ({
   unset: playlist => dispatch(unset(playlist))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Playlist);
+export default connect(null, mapDispatchToProps)(Playlist);
