@@ -14,7 +14,7 @@ class Access extends Component {
   render() {
     return (
       <div className='acces_wrapper'>
-        <Header />
+        {/* <Header /> */}
         <div className='acces_wrapper_info'>
           <h1>Start creating combined playlists today.</h1>
           <h2>Let's make some franken-lists!</h2>

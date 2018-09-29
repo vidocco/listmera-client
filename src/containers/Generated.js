@@ -13,7 +13,7 @@ class Generated extends Component {
   render() {
     return (
       <div className="Wrapper">
-        <Header />
+        {/* <Header /> */}
         <div className="MaxWidthCreate">
           <h1>Playlist Generated!</h1>
           <h2>What happens now?</h2>

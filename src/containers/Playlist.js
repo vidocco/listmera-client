@@ -250,7 +250,7 @@ class Playlist extends Component {
     const content = this.renderContent(this.state);
     return (
       <div className="wrapper">
-        <Header />
+        {/* <Header /> */}
         {content}
       </div>
     );

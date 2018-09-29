@@ -69,7 +69,7 @@ class Create extends Component {
   render() {
     return (
       <div className="wrapper">
-        <Header />
+        {/* <Header /> */}
 
         <div className="create_wrapper">
           <h1>Create a new playlist</h1>

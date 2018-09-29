@@ -36,7 +36,7 @@ class Main extends Component {
     const lists = this.renderTopLists(this.state);
     return (
       <div className="wrapper">
-        <Header />
+        {/* <Header /> */}
         <Banner />
         {lists}
       </div>

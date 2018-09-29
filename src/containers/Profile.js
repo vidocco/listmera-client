@@ -73,7 +73,7 @@ class Profile extends Component {
     const profile = this.renderProfile(this.state);
     return (
       <div className="Wrapper">
-        <Header />
+        {/* <Header /> */}
         {profile}
       </div>
     );

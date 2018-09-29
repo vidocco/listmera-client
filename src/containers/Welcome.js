@@ -40,7 +40,7 @@ class Welcome extends Component {
     return this.loaded
     ? (
       <div className="acces_wrapper">
-        <Header />
+        {/* <Header /> */}
         <div className="acces_wrapper_info">
           <h1>Welcome {name}</h1>
           <div className='picture_wrapper'>
