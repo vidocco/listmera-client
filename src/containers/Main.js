@@ -24,7 +24,6 @@ class Main extends Component {
   }
 
   //========================================= RENDERING
-
   renderTopLists(state) {
     if (state) {
       return <TopLists content={this.state.playlists} title="Recently Created Playlists" />;
@@ -36,7 +35,7 @@ class Main extends Component {
   render() {
     const lists = this.renderTopLists(this.state);
     return (
-      <div className="Wrapper">
+      <div className="wrapper">
         <Header />
         <Banner />
         {lists}
