@@ -62,31 +62,33 @@ class Create extends Component {
   //========================================= RENDERING
 
   toggleClass(name) {
-    if (this.state.selected.indexOf(name) >= 0) return 'TypeSelector Selected';
-    return 'TypeSelector';
+    if (this.state.selected.indexOf(name) >= 0) return 'type_selector selected';
+    return 'type_selector';
   }
 
   render() {
     return (
-      <div className="Wrapper">
+      <div className="wrapper">
         <Header />
-        <div className="MaxWidthCreate">
+
+        <div className="create_wrapper">
           <h1>Create a new playlist</h1>
-          <div className="UserForm">
-            <input 
-              type="text" 
+          <div className="create_userform">
+            <input
+              type="text"
               ref={el => this.inputName = el || 'Listmera List'}
               placeholder="PLAYLIST NAME"
               />
             <h2>Strict Mode</h2>
-            <div className="SelectorWrap">
-              <button 
+            <div className="selector_wrap">
+              <button
                 className={this.toggleClass('Strict')}
                 onClick={() => this.toggleSelection('Strict')}>Strict</button>
             </div>
+
             <h2>Type</h2>
-            <div className="SelectorWrap">
-              <button 
+            <div className="selector_wrap">
+              <button
                 className={this.toggleClass('Dance')}
                 onClick={() => this.toggleSelection('Dance')}>Danceable</button>
               <button
@@ -99,14 +101,16 @@ class Create extends Component {
                 className={this.toggleClass('Instrument')}
                 onClick={() => this.toggleSelection('Instrument')}>Instrumental</button>
             </div>
+
             <h2>Live music only?</h2>
-            <div className="SelectorWrap">
+            <div className="selector_wrap">
               <button
                 className={this.toggleClass('Live')}
                 onClick={() => this.toggleSelection('Live')}>Live</button>
             </div>
+
             <h2>Mood</h2>
-            <div className="SelectorWrap">
+            <div className="selector_wrap">
               <button
                 className={this.toggleClass('Happy')}
                 onClick={() => this.toggleSelection('Happy')}>Happy</button>
@@ -120,18 +124,19 @@ class Create extends Component {
                 className={this.toggleClass('Minor')}
                 onClick={() => this.toggleSelection('Minor')}>Minor</button>
             </div>
+
             <h2>Tempo</h2>
             <p>If you don't care about the tempo of your playlist don't move this slider.</p>
-            <div className="SliderWrap">
+            <div className="slider_wrap">
               <p>Gary</p>
-              <input className="Slider"
+              <input className="slider"
                 type="range"
                 ref={el => this.tempo = el || 50}/>
               <p>Sonic</p>
             </div>
           </div>
-          <button className="Create"
-            onClick={() => this.createPlaylist(this.inputName.value, this.state.selected, this.tempo.value)}>CREATE</button>
+          <button className="create_button"
+            onClick={() => this.createPlaylist(this.inputName.value, this.state.selected, this.tempo.value)}>CREATE!</button>
         </div>
       </div>
     );
