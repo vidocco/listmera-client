@@ -155,7 +155,6 @@ class Playlist extends Component {
     }
     if (state.isAdmin) {
       const text = state.loading ? (
-        // <img alt="LOADING" className="generate_button" src={require('../assets/circle.png')} />
           <Loader small />
 
       ) : (
@@ -188,7 +187,7 @@ class Playlist extends Component {
           {text}
         </button>
       ) : (
-        <button className={'Collaborate ' + buttonClass} onClick={this.collaborate}>
+        <button className={'collaborate ' + buttonClass} onClick={this.collaborate}>
           COLLABORATE
         </button>
       );
@@ -228,7 +227,7 @@ class Playlist extends Component {
         return (
           <div className="render_content">
             <div className="render_content_title">
-              <div className="PlaylistTitle">
+              <div className="playlist_title">
                 <h1>{name}</h1>
                 <p>{'created by ' + admin + collabers}</p>
               </div>
