@@ -8,15 +8,17 @@ import logo from '../assets/listmera.png';
 
 class Header extends Component {
 
-  //========================================= RENDERING
+  redirect() {
+    window.location.href = process.env.REACT_APP_API_URL + '/access';
+  }
 
+//========================================= RENDERING
   renderLogin(user) {
     if (!user.name) {
       return (
-        <div className='header_profile'>
-          <Link to="/access">
-            <p className='header_profile_name'>LOG IN</p>
-          </Link>
+        <div className='header_profile_login'>
+          <div className='header_profile_login_text'
+                onClick={this.redirect}>LOG IN</div>
         </div>
       );
     } else {
@@ -31,8 +33,9 @@ class Header extends Component {
           <div className='header_profile_name_wrapper'>
             <Link to="/me">
               <div className='header_profile_name'>
-                {this.props.user.name.split(' ')[0]}
+                {this.props.user.name}
               </div>
+              <div>▾</div>
             </Link>
           </div>
         </div>
@@ -44,23 +47,24 @@ class Header extends Component {
     const login = this.renderLogin(this.props.user);
     return (
       <div className='navbar'>
-        <div className='navbar_logotype'>
-          <Link to="/">
-            <div className='navbar_logotype_img_wrapper'>
-              <img alt="logo"
-                  className="navbar_wrapper_logotype_img"
-                  src={logo} />
-            </div>
-          </Link>
-
-            {/* <div className='navbar_wrapper_logotype_name'>
-            </div> */}
-            <SearchBar />
+        <div className='navbar_search'>
+          <SearchBar />
         </div>
 
+        <div className='navbar_right'>
+          <div className='navbar_logotype'>
+            <Link to="/">
+              <div className='navbar_logotype_img_wrapper'>
+                <img alt="logo"
+                    className="navbar_wrapper_logotype_img"
+                    src={logo} />
+              </div>
+            </Link>
+          </div>
 
-        <div className='navbar_login'>
-          {login}
+          <div className='navbar_login'>
+            {login}
+          </div>
         </div>
       </div>
     );

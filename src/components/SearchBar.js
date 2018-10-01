@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
 
 import '../stylesheets/components/Header.sass';
+// import search from '../assests/magnifier.svg'
+
 
 class SearchBar extends Component {
 
-  //========================================= RENDERING
+//========================================= RENDERING
   render() {
     return(
       <div className='navbar_wrapper_logotype_name'>
-      <input type='text' className='search_bar' placeholder= 'Search'/>
-    </div>
+        <input type='text' className='search_bar' />
+      </div>
     );
   };
 }

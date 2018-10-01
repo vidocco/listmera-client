@@ -1,10 +1,24 @@
 @import '../../index'
 @import '../../stylesheets/base/variables.sass'
 
-// Header
+// ========== LOG IN
+.header_profile_login
+  width: 10vw
+  height: 6vh
+  font-size: .6em
+  font-weight: $medium
+  background-color: $spotify-green
+  margin: 5px 10px
+  border-radius: 0px 0px 10px 10px
+  .header_profile_login_text
+    padding: 10px
+    color: $font-color
+    line-height: 2em
+
+// ====== PROFILE
 .header_profile
+  @extend .header_profile_login
   +flex()
-  width: 7vw
   a:link, a:visited, a:hover, a:active
     text-decoration: none
     color: $font-color
@@ -12,52 +26,52 @@
 .header_profile_img_wrapper
   +flex($direction: row, $justify: flex-start, $align: center)
   height: 100%
-  padding: 10px
-
-.header_profile_img
-  border-radius: 50%
-  width: 2vw
+  padding: 0px 10px
+  .header_profile_img
+    border-radius: 50%
+    width: 2vw
 
 .header_profile_name_wrapper
   +flex($direction: row, $justify: flex-start, $align: center)
+  font-weight: $bold
 
-.header_profile_name
-  font-size: 1em
-
-// Navbar
+// ========== NAV BAR
 .navbar
-  +flex($justify: space-between, $align: center)
-  height: 8vh
-  background-color: rgba(0, 0, 0, 0.5)
+  +flex($direction: row, $justify: space-around, $align: center)
+  height: 6vh
   width: 100%
   position: fixed
   z-index: 3
 
-.navbar_logotype
-  +flex()
-  width: 40vw
+.navbar_search
+  +flex($direction: row, $justify: space-around, $align: center)
+  margin-left: -28vw
 
-.navbar_logotype_img_wrapper
-  +flex($direction: row, $justify: flex-start, $align: center)
-  padding: 10px
-
-.navbar_wrapper_logotype_name
-  +flex($direction: row, $justify: flex-start, $align: center)
-  font-weight: $regular
-  font-size: 1.2em
+.navbar_right
+  +flex($direction: row, $justify: center, $align: center)
+  margin-right: -28vw
 
 .navbar_wrapper_logotype_img
   width: 2vw
 
 
-// SearchBar component
+// ========== SEARCH BAR
 .search_bar
   height: 3vh
   width: 20vw
-  margin: 10px
-  background-color: $font-color
-  border-radius: 10px
+  background-color: transparent
   border: none
   padding: 5px
+  color: $font-color
+  // border-bottom: 1px solid black
   &:focus
     outline: 0
+
+input[type='text']
+  background-image: url(../../assets/magnifier.svg)
+  background-repeat: no-repeat
+  background-position: 10px;
+  background-size: 6%
+  padding-left: 40px
+  opacity: 0.4
+
