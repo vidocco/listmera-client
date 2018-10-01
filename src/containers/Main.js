@@ -26,7 +26,7 @@ class Main extends Component {
   //========================================= RENDERING
   renderTopLists(state) {
     if (state) {
-      return <TopLists content={this.state.playlists} title="Recently Created Playlists" />;
+      return <TopLists content={this.state.playlists} title="Recently created playlists 🚀" />;
     } else {
       return <Loader />;
     }

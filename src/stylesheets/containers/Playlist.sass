@@ -2,9 +2,16 @@
 @import '../base/variables.sass'
 @import '../components/Loader.sass'
 
-
 .render_content
   padding: 40px
+  text-align: center
+
+.render_content_title
+  +flex($justify: space-between, $align: center)
+  height: 90px
+  width: 80%
+  margin: auto
+  margin-bottom: 0
 
 .generate
   height: 5vh
@@ -67,15 +74,6 @@
 .Error
   text-align: center
   margin-top: 70px
-
-.PlaylistTitleWrapper
-  display: flex
-  height: 90px
-  width: 80%
-  margin: auto
-  justify-content: space-between
-  align-items: center
-  margin-bottom: 0
 
 .PlaylistTitle
   height: 100%

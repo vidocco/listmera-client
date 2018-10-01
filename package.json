@@ -45,13 +45,8 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-<<<<<<< HEAD
     "start": "REACT_APP_SECRET_CODE=http://localhost:3001 node scripts/start.js",
     "build": "REACT_APP_SECRET_CODE=https://listmera.herokuapp.com node scripts/build.js",
-=======
-    "start": "react-scripts start",
-    "build": "react-scripts build",
->>>>>>> d71a7d8771567a347ea4cbae7b556dcaec9ff7cd
     "deploy": "s3-deploy-dotenv",
     "test": "node scripts/test.js --env=jsdom"
   },

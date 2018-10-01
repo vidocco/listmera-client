@@ -59,8 +59,8 @@ class Profile extends Component {
             </div>
           </div>
 
-          <div>
-            <TopLists content={this.state.adminOf} title="Your Playlists" />
+          <div className='toplist'>
+            <TopLists content={this.state.adminOf} title="Your playlists 🎧" />
           </div>
         </div>
       );
@@ -73,7 +73,6 @@ class Profile extends Component {
     const profile = this.renderProfile(this.state);
     return (
       <div className="Wrapper">
-        {/* <Header /> */}
         {profile}
       </div>
     );

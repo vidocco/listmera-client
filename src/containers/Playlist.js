@@ -4,8 +4,6 @@ import '../stylesheets/components/Loader.sass';
 
 import { connect } from 'react-redux';
 import { unset } from '../actions';
-
-import Header from '../components/Header';
 import Loader from '../components/Loader';
 import Track from '../components/Track';
 
@@ -229,7 +227,7 @@ class Playlist extends Component {
           );
         return (
           <div className="render_content">
-            <div className="PlaylistTitleWrapper">
+            <div className="render_content_title">
               <div className="PlaylistTitle">
                 <h1>{name}</h1>
                 <p>{'created by ' + admin + collabers}</p>
@@ -250,7 +248,6 @@ class Playlist extends Component {
     const content = this.renderContent(this.state);
     return (
       <div className="wrapper">
-        {/* <Header /> */}
         {content}
       </div>
     );
