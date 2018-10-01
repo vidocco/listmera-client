@@ -48,10 +48,6 @@ class Header extends Component {
     return (
       <div className='navbar'>
         <div className='navbar_search'>
-          <SearchBar />
-        </div>
-
-        <div className='navbar_right'>
           <div className='navbar_logotype'>
             <Link to="/">
               <div className='navbar_logotype_img_wrapper'>
@@ -61,7 +57,10 @@ class Header extends Component {
               </div>
             </Link>
           </div>
+          <SearchBar />
+        </div>
 
+        <div className='navbar_right'>
           <div className='navbar_login'>
             {login}
           </div>
