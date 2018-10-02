@@ -10,7 +10,7 @@ class Main extends Component {
   constructor(props) {
     super(props);
     fetch(process.env.REACT_APP_API_URL + '/playlists/recent', {
-      header: {
+      headers: {
         Origin: process.env.REACT_APP_CLIENT_URL
       }
     })

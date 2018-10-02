@@ -46,7 +46,7 @@ class Playlist extends Component {
       method: 'PUT',
       body: window.localStorage.getItem('user'),
       mode: 'cors',
-      header: {
+      headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Origin: process.env.REACT_APP_CLIENT_URL
@@ -67,7 +67,7 @@ class Playlist extends Component {
       method: 'POST',
       body: window.localStorage.getItem('user'),
       mode: 'cors',
-      header: {
+      headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Origin: process.env.REACT_APP_CLIENT_URL
@@ -90,7 +90,7 @@ class Playlist extends Component {
       method: 'POST',
       body: JSON.stringify(body),
       mode: 'cors',
-      header: {
+      headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Origin: process.env.REACT_APP_CLIENT_URL
@@ -111,7 +111,7 @@ class Playlist extends Component {
         method: 'DELETE',
         body: JSON.stringify(body),
         mode: 'cors',
-        header: {
+        headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           Origin: process.env.REACT_APP_CLIENT_URL

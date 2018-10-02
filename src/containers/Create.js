@@ -25,7 +25,7 @@ class Create extends Component {
       method: 'POST',
       body: JSON.stringify({username: this.props.user.username, name: listName, values: selectedValues, tempo: selectedTempo}),
       mode: 'cors',
-      header: {
+      headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': process.env.REACT_APP_CLIENT_URL,
