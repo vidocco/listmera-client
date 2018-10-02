@@ -6,6 +6,10 @@ import '../stylesheets/components/Banner.sass'
 
 class Banner extends Component {
 
+    redirect() {
+    window.location.href = process.env.REACT_APP_API_URL + '/access';
+  }
+
   //========================================= RENDERING
   renderButton(user) {
     if (user) {
@@ -16,9 +20,7 @@ class Banner extends Component {
       )
   } else {
       return (
-        <Link to="/access">
-          <button className="banner_create">LOGIN TO CREATE</button>
-        </Link>
+        <button className="banner_create" onClick={this.redirect}>LOGIN TO CREATE</button>
       )
     }
   }
