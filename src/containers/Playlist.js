@@ -59,16 +59,14 @@ class Playlist extends Component {
   }
 
   // Generate playlists to Spotify. If there are no tracks it cannot generate them.
+  // I'M NOT SURE THIS IS CORRECTLY WORKING...
   generate = () => {
     this.setState({
       ...this.state,
       loading: true
     });
     let user = JSON.parse(window.localStorage.getItem('user'));
-    const tracks = window.confirm(
-      `Hey ${user.name.split(' ')[0]}, your playlist is empty. Please tell your friends to collaborate.`
-    );
-    if(tracks) {
+    if(this.state.length) {
     fetch(process.env.REACT_APP_API_URL + window.location.pathname, {
       method: 'POST',
       body: window.localStorage.getItem('user'),
@@ -82,6 +80,10 @@ class Playlist extends Component {
       .then(res => (window.location = '/generated'))
       .catch(e => console.error(e));
 
+    } else {
+      window.confirm(
+        `Hey ${user.name.split(' ')[0]}, your playlist is empty. Please tell your friends to collaborate.`
+      );
     }
   };
 
