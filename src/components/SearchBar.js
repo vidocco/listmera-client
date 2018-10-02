@@ -8,13 +8,13 @@ import '../stylesheets/components/Header.sass';
 
 class SearchBar extends Component {
 
-  state = {
-    text: ''
-  }
+  // state = {
+  //   text: ''
+  // }
 
   // search = () => {
   //   if (this.state.text.length) {
-  //     fetch(process.env.REACT_APP_API_URL + '/playlist/:id')
+  //     fetch(process.env.REACT_APP_API_URL + '/search?term=whatever')
   //     .then(res => res.json())
   //     .then(res => this.props.searching(res.playlist))
   //   } else {
@@ -37,8 +37,6 @@ class SearchBar extends Component {
           className='search_bar'
           // value= {this.state.text}
           // onChange={(e) => this.debounce(this.search, e.target.value)}
-          // onFocus={() => history.location.pathname !== '/playlist/:id' && history.push('/playlist/:id')}
-          // onBlur={() => !this.state.text.length && history.goBack()}
           />
       </div>
     );
