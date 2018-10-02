@@ -18,7 +18,7 @@ class TopItem extends Component {
 
   title() {
     if (!this.props.title) {
-      return (<div className='listmera_playlist'>Listmera Playlist</div>)
+      return (<div className='listmera_playlist'>Listmera Playlist <span role='img' aria-label='Monkey'>🙈</span></div>)
     } else {
       return (<h3>{this.props.title}</h3>)
     }
