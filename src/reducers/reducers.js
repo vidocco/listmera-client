@@ -28,6 +28,11 @@ const reducer = (state = initialUserState, action) => {
       ...state,
       playlists: play,
     }
+  case 'ON_SEARCH':
+    return {
+      ...state,
+      playlists: action.playlist
+    }
   default: return state;
   }
 }
