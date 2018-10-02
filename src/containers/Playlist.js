@@ -56,12 +56,17 @@ class Playlist extends Component {
       })
       .catch(e => console.error(e));
   }
-
+  // Generate tracks to Spotify. If there are no tracks it cannot generate them.
   generate = () => {
     this.setState({
       ...this.state,
       loading: true
     });
+    let user = JSON.parse(window.localStorage.getItem('user'));
+    const tracks = window.confirm(
+      `Hey ${user.name.split(' ')[0]}, your playlist is empty. Please tell your friends to collaborate.`
+    );
+    if(tracks) {
     fetch(process.env.REACT_APP_API_URL + window.location.pathname, {
       method: 'POST',
       body: window.localStorage.getItem('user'),
@@ -74,6 +79,8 @@ class Playlist extends Component {
     })
       .then(res => (window.location = '/generated'))
       .catch(e => console.error(e));
+
+    }
   };
 
   copy = () => {
@@ -155,7 +162,7 @@ class Playlist extends Component {
     }
     if (state.isAdmin) {
       const text = state.loading ? (
-          <Loader small />
+          <div>Loading...</div>
 
       ) : (
         'GENERATE'
