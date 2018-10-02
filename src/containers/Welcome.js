@@ -26,7 +26,7 @@ class Welcome extends Component {
       .then(res => {
         res.name = res.name ? res.name : res.username;
         window.localStorage.setItem('user', JSON.stringify(res));
-        res.picture = res.picture ? res.picture : require('../assets/music-player.png');
+        res.picture = res.picture ? res.picture : require('../assets/compact-disc.svg');
         this.loaded = true;
         this.props.login(res);
       })

@@ -12,7 +12,7 @@ class Generated extends Component {
 
   render() {
     return (
-      <div className="wrapper">
+      <div className="generaded_wrapper">
           <h1>Playlist generated!</h1>
           <h2>What happens now?</h2>
           <p>Well, your playlist is now in your spotify account and it will be available for

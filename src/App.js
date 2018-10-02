@@ -23,7 +23,7 @@ class App extends Component {
     super(props);
     const user = JSON.parse(window.localStorage.getItem('user'));
     if (user) {
-      user.picture = user.picture ? user.picture : require('./assets/music-player.png');
+      user.picture = user.picture ? user.picture : require('./assets/compact-disc.svg');
       this.props.login(user);
     }
   }
