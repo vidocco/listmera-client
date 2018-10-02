@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/containers/Profile.sass';
 
-import { connect } from 'react-redux';
-import { logout } from '../actions';
-
-import Header from '../components/Header';
 import Loader from '../components/Loader';
 import TopLists from '../components/TopLists';
 
@@ -34,32 +30,28 @@ class Profile extends Component {
     }
   }
 
-  logout = () => {
-    window.localStorage.removeItem('user');
-    this.props.logout();
-    window.location = '/';
-  };
-
   //========================================= RENDERING
-
   renderProfile(state) {
     if (state) {
       return (
-        <div className="MaxWidthCreate">
-          <div className="ProfileWrapper">
-            <div className="ProfileImage">
-              <img alt="you" className="WelcomePicture" src={this.state.picture} />
+        <div className='profile'>
+          <div className='profile_user'>
+            <div className= 'profile_user_info'>
+              <img alt="you"
+                  className="profile_user_info_img"
+                  src={this.state.picture} />
             </div>
-            <div className="ProfileDetails">
-              <h3>Name: {this.state.name}</h3>
-              <h3>e-mail: {this.state.email}</h3>
-              <h3>Username: {this.state.username}</h3>
-              <a onClick={this.logout}>
-                <p>log out</p>
-              </a>
+
+            <div className='profile_user_info_name'>
+              <h5>USER</h5>
+              <h3>{this.state.name}</h3>
             </div>
           </div>
-          <TopLists content={this.state.adminOf} title="Your Playlists" />
+
+          <div className='profile_playlist'>
+            <TopLists content={this.state.adminOf}
+              title='Your playlists 🎧' />
+          </div>
         </div>
       );
     } else {
@@ -70,19 +62,11 @@ class Profile extends Component {
   render() {
     const profile = this.renderProfile(this.state);
     return (
-      <div className="Wrapper">
-        <Header />
+      <div className="wrapper">
         {profile}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Profile);
+export default Profile;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/containers/Main.sass';
 
 import Header from '../components/Header';
 import Loader from '../components/Loader';
@@ -24,10 +24,9 @@ class Main extends Component {
   }
 
   //========================================= RENDERING
-
   renderTopLists(state) {
     if (state) {
-      return <TopLists content={this.state.playlists} title="Recently Created Playlists" />;
+      return <TopLists content={this.state.playlists} title="Recently created playlists 🚀" />;
     } else {
       return <Loader />;
     }
@@ -36,8 +35,8 @@ class Main extends Component {
   render() {
     const lists = this.renderTopLists(this.state);
     return (
-      <div className="Wrapper">
-        <Header />
+      <div className="wrapper">
+        {/* <Header /> */}
         <Banner />
         {lists}
       </div>

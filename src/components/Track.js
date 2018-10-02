@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/components/Track.sass';
 
 class Track extends Component {
   render() {

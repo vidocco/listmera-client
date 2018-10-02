@@ -4,9 +4,8 @@ import query from 'query-string';
 import { connect } from 'react-redux';
 import { login } from '../actions';
 
-import Header from '../components/Header';
 import Loader from '../components/Loader';
-import '../App.css';
+import '../stylesheets/containers/Welcome.sass';
 
 class Welcome extends Component {
   constructor(props) {
@@ -26,7 +25,7 @@ class Welcome extends Component {
       .then(res => {
         res.name = res.name ? res.name : res.username;
         window.localStorage.setItem('user', JSON.stringify(res));
-        res.picture = res.picture ? res.picture : require('../assets/music-player.png');
+        res.picture = res.picture ? res.picture : require('../assets/compact-disc.svg');
         this.loaded = true;
         this.props.login(res);
       })
@@ -34,21 +33,23 @@ class Welcome extends Component {
   }
 
   //========================================= RENDERING
-
   render() {
     const user = this.props.user;
     const name = user.name ? user.name : user.username;
-    return this.loaded ? (
-      <div className="Wrapper">
-        <Header />
-        <div className="MaxWidthCreate">
+    return this.loaded
+    ? (
+      <div className="acces_wrapper">
+        <div className="acces_wrapper_info">
           <h1>Welcome {name}</h1>
-          <img alt="you" className="WelcomePicture" src={user.picture} />
-          <h2>We're glad to have you</h2>
+          <div className='picture_wrapper'>
+            <img alt="you" className="welcome_picture" src={user.picture} />
+          </div>
+          <h2>We're glad to have you. 🎉</h2>
         </div>
       </div>
-    ) : (
-      <div className="Wrapper">
+    )
+    : (
+      <div className="wrapper">
         <Loader />
       </div>
     );
@@ -63,7 +64,4 @@ const mapDispatchToProps = dispatch => ({
   login: user => dispatch(login(user))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Welcome);
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

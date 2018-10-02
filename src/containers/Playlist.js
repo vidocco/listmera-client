@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/containers/Playlist.sass';
+import '../stylesheets/components/Loader.sass';
 
 import { connect } from 'react-redux';
 import { unset } from '../actions';
-
-import Header from '../components/Header';
 import Loader from '../components/Loader';
 import Track from '../components/Track';
 
@@ -41,6 +40,7 @@ class Playlist extends Component {
       });
   }
 
+  // Collaborate to someone else playlist.
   collaborate() {
     fetch(process.env.REACT_APP_API_URL + window.location.pathname, {
       method: 'PUT',
@@ -58,11 +58,15 @@ class Playlist extends Component {
       .catch(e => console.error(e));
   }
 
+  // Generate playlists to Spotify. If there are no tracks it cannot generate them.
+  // I'M NOT SURE THIS IS CORRECTLY WORKING...
   generate = () => {
     this.setState({
       ...this.state,
       loading: true
     });
+    let user = JSON.parse(window.localStorage.getItem('user'));
+    if(this.state.length) {
     fetch(process.env.REACT_APP_API_URL + window.location.pathname, {
       method: 'POST',
       body: window.localStorage.getItem('user'),
@@ -75,8 +79,15 @@ class Playlist extends Component {
     })
       .then(res => (window.location = '/generated'))
       .catch(e => console.error(e));
+
+    } else {
+      window.confirm(
+        `Hey ${user.name.split(' ')[0]}, your playlist is empty. Please tell your friends to collaborate.`
+      );
+    }
   };
 
+  // 'Post' the tracks into the Listmera playlist
   copy = () => {
     this.setState({
       ...this.state,
@@ -100,6 +111,7 @@ class Playlist extends Component {
       .catch(e => console.error(e));
   };
 
+  // As the name says, it deletes playlists.
   delete = () => {
     let user = JSON.parse(window.localStorage.getItem('user'));
     const sure = window.confirm(
@@ -133,20 +145,15 @@ class Playlist extends Component {
   };
 
   //========================================= RENDERING
-
   renderTracks(tracks) {
     return tracks.map((el, i) => {
-      return (
-        <Track
-          key={i}
-          img={el.image}
-          title={el.name}
-          artists={el.artists}
-          album={el.album}
-          popularity={el.popularity}
-        />
-      );
-    });
+      return <Track key={i}
+        img={el.image}
+        title={el.name}
+        artists={el.artists}
+        album={el.album}
+        popularity={el.popularity}/>
+    })
   }
 
   renderButtons = state => {
@@ -161,19 +168,20 @@ class Playlist extends Component {
     }
     if (state.isAdmin) {
       const text = state.loading ? (
-        <img alt="LOADING" className="ButtonLoad" src={require('../assets/circle.png')} />
+          <div>Loading...</div>
+
       ) : (
         'GENERATE'
       );
-      const color = state.loading ? 'Generate Clicked' : 'Generate';
+      const color = state.loading ? 'generate clicked' : 'generate';
       return state.done ? (
-        <div className="PlaylistManage">
-          <button className="Generate Clicked InactiveButton">DONE</button>
+        <div className="playlist_manage">
+          <button className="generate clicked inactive_button">DONE</button>
         </div>
       ) : (
-        <div className="PlaylistManage">
-          <button className="Create Delete" onClick={this.delete}>
-            <img className="DeleteIco" alt="DELETE" src={require('../assets/delete.png')} />
+        <div className="playlist_manage">
+          <button className="Create delete" onClick={this.delete}>
+            <img className="delete_img" alt="DELETE" src={require('../assets/garbage.svg')} />
           </button>
           <button className={color} onClick={this.generate}>
             {text}
@@ -182,17 +190,17 @@ class Playlist extends Component {
       );
     } else {
       const text = state.loading ? (
-        <img alt="LOADING" className="ButtonLoad" src={require('../assets/circle.png')} />
+        <img alt="LOADING" className="loader" src={require('../assets/circle.png')} />
       ) : (
         'COPY'
       );
-      const color = state.loading ? 'Generate Clicked' : 'Generate';
+      const color = state.loading ? 'generate clicked' : 'generate';
       return state.done ? (
         <button className={color} onClick={this.copy}>
           {text}
         </button>
       ) : (
-        <button className={'Collaborate ' + buttonClass} onClick={this.collaborate}>
+        <button className={'collaborate ' + buttonClass} onClick={this.collaborate}>
           COLLABORATE
         </button>
       );
@@ -223,16 +231,16 @@ class Playlist extends Component {
             : ' and in need of collaborators';
         const extra =
           state.tracks.length === 0 ? (
-            <p className="MoreSongs">
-              this playlist needs a little help. Come on, click that button!
+            <p className="more_songs">
+              This playlist needs a little help. Come on, click that button!
             </p>
           ) : (
-            <p className="MoreSongs">{`... making that ${this.state.length} songs in total`}</p>
+            <p className="more_songs">{`... making that ${this.state.length} songs in total`}</p>
           );
         return (
-          <div className="MaxWidthCreate">
-            <div className="PlaylistTitleWrapper">
-              <div className="PlaylistTitle">
+          <div className="render_content">
+            <div className="render_content_title">
+              <div className="playlist_title">
                 <h1>{name}</h1>
                 <p>{'created by ' + admin + collabers}</p>
               </div>
@@ -251,8 +259,7 @@ class Playlist extends Component {
   render() {
     const content = this.renderContent(this.state);
     return (
-      <div className="Wrapper">
-        <Header />
+      <div className="wrapper">
         {content}
       </div>
     );
@@ -263,7 +270,4 @@ const mapDispatchToProps = dispatch => ({
   unset: playlist => dispatch(unset(playlist))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Playlist);
+export default connect(null, mapDispatchToProps)(Playlist);

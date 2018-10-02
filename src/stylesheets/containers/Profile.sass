@@ -1,0 +1,39 @@
+@import '../../index'
+@import '../base/variables.sass'
+
+.profile
+  +flex()
+  padding: 90px 20px
+  margin: 0px 40px
+
+.profile_user
+  +flex()
+  width: 50vw
+
+.profile_user_info
+  +flex($direction: column, $justify: flex-start, $align: flex-start)
+  width: 30%
+  height: 30%
+  .profile_user_info_img
+    border-radius: 50%
+    width: 100%
+    padding: 10px
+
+.profile_user_info_name
+  +flex($direction: column, $justify: flex-start, $align: flex-start)
+  padding: 20px
+  h3
+    margin-top: 0px
+    margin-bottom: 5px
+    font-weight: $medium
+    font-size: 1.2em
+
+  h5
+    margin-top: 0px
+    margin-bottom: 0px
+    font-weight: $regular
+    font-size: .7em
+
+.profile_playlist
+  +flex($direction: column, $justify: flex-start, $align: center)
+  font-weight: $light

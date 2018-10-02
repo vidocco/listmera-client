@@ -16,3 +16,8 @@ export const unset = (playlist) => ({
   type: 'UNSET_PLAYLIST',
   playlist
 })
+
+export const onSearch = (playlist) => ({
+  type: 'ON_SEARCH',
+  playlist
+})
