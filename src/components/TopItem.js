@@ -23,10 +23,10 @@ class TopItem extends Component {
         {cover}
         <div className="top_playlist_item_details">
           <h3>{this.props.title}</h3>
-          <h4>Nº of Songs: {this.props.songs}</h4>
-          <h4>Filters: {this.props.genres.length ? this.props.genres.join(', ') : 'None'}</h4>
-          <h4>Duration: {this.props.duration} min</h4>
-          <h5>Artists you may know: {this.props.artists}</h5>
+          <h4><span>Nº of Songs:</span> {this.props.songs}</h4>
+          <h4><span>Filters:</span> {this.props.genres.length ? this.props.genres.join(', ') : 'None'}</h4>
+          <h4><span>Duration:</span> {this.props.duration} min</h4>
+          <h5><span>Artists you may know:</span> {this.props.artists}</h5>
         </div>
         <div className="play_button"></div>
     </div>

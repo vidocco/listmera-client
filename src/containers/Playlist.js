@@ -40,6 +40,7 @@ class Playlist extends Component {
       });
   }
 
+  // Collaborate to someone else playlist.
   collaborate() {
     fetch(process.env.REACT_APP_API_URL + window.location.pathname, {
       method: 'PUT',
@@ -56,7 +57,8 @@ class Playlist extends Component {
       })
       .catch(e => console.error(e));
   }
-  // Generate tracks to Spotify. If there are no tracks it cannot generate them.
+
+  // Generate playlists to Spotify. If there are no tracks it cannot generate them.
   generate = () => {
     this.setState({
       ...this.state,
@@ -83,6 +85,7 @@ class Playlist extends Component {
     }
   };
 
+  // 'Post' the tracks into the Listmera playlist
   copy = () => {
     this.setState({
       ...this.state,
@@ -106,6 +109,7 @@ class Playlist extends Component {
       .catch(e => console.error(e));
   };
 
+  // As the name says, it deletes playlists.
   delete = () => {
     let user = JSON.parse(window.localStorage.getItem('user'));
     const sure = window.confirm(
@@ -175,7 +179,7 @@ class Playlist extends Component {
       ) : (
         <div className="playlist_manage">
           <button className="Create delete" onClick={this.delete}>
-            <img className="delete_img" alt="DELETE" src={require('../assets/delete.png')} />
+            <img className="delete_img" alt="DELETE" src={require('../assets/garbage.svg')} />
           </button>
           <button className={color} onClick={this.generate}>
             {text}
