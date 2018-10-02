@@ -16,13 +16,23 @@ class TopItem extends Component {
       )
   }
 
+  title() {
+    if (!this.props.title) {
+      return (<div className='listmera_playlist'>Listmera Playlist</div>)
+    } else {
+      return (<h3>{this.props.title}</h3>)
+    }
+  }
+
   render() {
     const cover = this.renderCover(this.props.cover);
+    const title = this.title(this.props.title)
     return (
       <div className="top_playlist_item">
         {cover}
         <div className="top_playlist_item_details">
-          <h3>{this.props.title}</h3>
+          {/* <h3>{this.props.title}</h3> */}
+          {title}
           <h4><span>Nº of Songs:</span> {this.props.songs}</h4>
           <h4><span>Filters:</span> {this.props.genres.length ? this.props.genres.join(', ') : 'None'}</h4>
           <h4><span>Duration:</span> {this.props.duration} min</h4>
