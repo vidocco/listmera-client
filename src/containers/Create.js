@@ -67,12 +67,11 @@ class Create extends Component {
   render() {
     return (
       <div className="wrapper">
-
         <div className="create_wrapper">
           <h1>Create a new playlist</h1>
           <div className="create_userform">
             <input
-              typega ="text"
+              type="text"
               ref={el => this.inputName = el || 'Listmera List'}
               placeholder="PLAYLIST NAME"
               />
