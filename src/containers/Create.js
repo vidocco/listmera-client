@@ -4,8 +4,6 @@ import '../stylesheets/containers/Create.sass';
 import { connect } from 'react-redux';
 import { set } from '../actions'
 
-import Header from '../components/Header';
-
 class Create extends Component {
   constructor(props) {
     super(props);
@@ -69,13 +67,12 @@ class Create extends Component {
   render() {
     return (
       <div className="wrapper">
-        {/* <Header /> */}
 
         <div className="create_wrapper">
           <h1>Create a new playlist</h1>
           <div className="create_userform">
             <input
-              type="text"
+              typega ="text"
               ref={el => this.inputName = el || 'Listmera List'}
               placeholder="PLAYLIST NAME"
               />
