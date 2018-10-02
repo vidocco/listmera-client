@@ -34,22 +34,23 @@ class Profile extends Component {
   renderProfile(state) {
     if (state) {
       return (
-        <div>
-          <div className='profile'>
-            <div className='profile_img'>
-              <img alt="you" className="welcome_picture" src={this.state.picture} />
+        <div className='profile'>
+          <div className='profile_user'>
+            <div className= 'profile_user_info'>
+              <img alt="you"
+                  className="profile_user_info_img"
+                  src={this.state.picture} />
             </div>
 
-            <div className='profile_info'>
+            <div className='profile_user_info_name'>
               <h5>USER</h5>
               <h3>{this.state.name}</h3>
-              <div className='profile_info_logout'>
-              </div>
             </div>
           </div>
 
-          <div className='toplist'>
-            <TopLists content={this.state.adminOf} title="Your playlists 🎧" />
+          <div className='profile_playlist'>
+            <TopLists content={this.state.adminOf}
+              title='Your playlists 🎧' />
           </div>
         </div>
       );
@@ -61,7 +62,7 @@ class Profile extends Component {
   render() {
     const profile = this.renderProfile(this.state);
     return (
-      <div className="Wrapper">
+      <div className="wrapper">
         {profile}
       </div>
     );
