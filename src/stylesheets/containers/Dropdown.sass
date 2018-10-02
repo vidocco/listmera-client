@@ -1,0 +1,30 @@
+@import '../../index'
+@import '../base/variables.sass'
+@import '../components/Header.sass'
+
+.dropdown
+  position: relative
+  display: inline-block
+  font-size: 1.5em
+  margin-left: 5px
+  cursor: pointer
+
+.dropdown_list
+  margin: 5px 34px
+  width: 10vw
+  font-size: 1em
+  font-weight: $bold
+  list-style-type: none
+  right: 0
+  top: 5.3vh
+  position: absolute
+
+li
+  height: 2vh
+  padding: 8px 16px
+  a
+    color: #000
+    text-decoration: none
+  &:hover
+    background-color: rgba(0, 0, 0, 0.2)
+    color: white

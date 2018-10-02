@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import '../stylesheets/components/Header.sass';
 import SearchBar from '../components/SearchBar';
+import Dropdown from '../containers/Dropdown';
 import logo from '../assets/listmera.png';
 
 class Header extends Component {
@@ -31,12 +32,10 @@ class Header extends Component {
           </div>
 
           <div className='header_profile_name_wrapper'>
-            <Link to="/me">
               <div className='header_profile_name'>
                 {this.props.user.name}
               </div>
-              <div>▾</div>
-            </Link>
+          <div className='dropdown_menu'><Dropdown /></div>
           </div>
         </div>
       );

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import '../stylesheets/containers/Profile.sass';
 
-import { connect } from 'react-redux';
-import { logout } from '../actions';
-
-import Header from '../components/Header';
 import Loader from '../components/Loader';
 import TopLists from '../components/TopLists';
 
@@ -34,12 +30,6 @@ class Profile extends Component {
     }
   }
 
-  logout = () => {
-    window.localStorage.removeItem('user');
-    this.props.logout();
-    window.location = '/';
-  };
-
   //========================================= RENDERING
   renderProfile(state) {
     if (state) {
@@ -54,7 +44,6 @@ class Profile extends Component {
               <h5>USER</h5>
               <h3>{this.state.name}</h3>
               <div className='profile_info_logout'>
-                <button onClick={this.logout}>Log Out</button>
               </div>
             </div>
           </div>
@@ -79,8 +68,4 @@ class Profile extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
-});
-
-export default connect(null, mapDispatchToProps)(Profile);
+export default Profile;
