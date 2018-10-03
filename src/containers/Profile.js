@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../stylesheets/containers/Profile.sass';
+import { connect } from 'react-redux';
 
 import Loader from '../components/Loader';
 import TopLists from '../components/TopLists';
@@ -39,7 +40,7 @@ class Profile extends Component {
             <div className= 'profile_user_info'>
               <img alt="you"
                   className="profile_user_info_img"
-                  src={this.state.picture} />
+                  src={this.props.user.picture} />
             </div>
 
             <div className='profile_user_info_name'>
@@ -69,4 +70,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = (state) => ({
+  user: state,
+})
+
+export default connect(mapStateToProps, null)(Profile);

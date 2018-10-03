@@ -7,8 +7,8 @@
   position: absolute
 
 .playlist_img_list
-  width: 18.5vh
-  height: 18.5vh
+  width: 50% // 18.5vh
+  height: 50% // 18.5vh
 
 .playlist_img_solo
   height: 100%
@@ -41,9 +41,11 @@
 .top_playlist_item_details
   +flex($direction: column, $justify: flex-end, $align: flex-start)
   background-color: rgba(0,0,0,0.4)
-
   width: 100%
   z-index: 1
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
   h3, h4, h5, .listmera_playlist
     margin: .5px 10px
     color: $font-color
