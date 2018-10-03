@@ -4,11 +4,12 @@ import '../stylesheets/components/Track.sass';
 class Track extends Component {
   render() {
     return (
-      <div className="Track">
-        <div className="TrackImageWrap">
-          <img className="TrackCover" alt="cover" src={this.props.img}/>
+      <div className="track">
+        <div className="track_imgwrap">
+          <img className="track_cover" alt="cover" src={this.props.img}/>
         </div>
-        <div className="TrackDetails">
+
+        <div className="track_details">
           <h3>{(this.props.title.length > 60) ? (this.props.title.slice(0,59) + '...') : this.props.title}</h3>
           <h5>
             Artist: {this.props.artists + ' '}
