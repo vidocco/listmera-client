@@ -23,6 +23,8 @@
   cursor: pointer
   margin-bottom: 10px
   transition: box-shadow 0.35s ease
+  background: -webkit-linear-gradient(45deg, rgba(101,158,74,1) 0%, rgba(29,131,171,1) 100%)
+
 
 .top_playlist_item:hover > .play_button
   width: 18vw
@@ -33,18 +35,19 @@
   position: absolute
   z-index: 2
   transition: background-color 0.25s ease
-  background-color: rgba(0,0,0,0.4)
+  background-color: rgba(0,0,0,0.5)
   background-image: url('../../assets/music-player-play.svg');
 
 .top_playlist_item_details
-  background: -webkit-linear-gradient(45deg, rgba(101,158,74,1) 0%, rgba(29,131,171,1) 100%)
   +flex($direction: column, $justify: flex-end, $align: flex-start)
+  background-color: rgba(0,0,0,0.4)
+
   width: 100%
   z-index: 1
   h3, h4, h5, .listmera_playlist
     margin: .5px 10px
     color: $font-color
-    font-weight: $light
+    font-weight: $regular
     font-size: .9em
     line-height: 1.1
   h3, .listmera_playlist
