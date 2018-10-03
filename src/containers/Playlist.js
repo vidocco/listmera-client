@@ -220,7 +220,7 @@ class Playlist extends Component {
       } else {
         const buttons = this.renderButtons(state);
         const tracks = this.renderTracks(state.tracks);
-        const name = state.name;
+        const name = state.name ? state.name : 'Listmera playlist 🙈';
         const admin = state.admin ? state.admin.split(' ')[0] : 'N/A';
         const collabers =
           state.collabers.filter(el => el !== admin).length > 0
