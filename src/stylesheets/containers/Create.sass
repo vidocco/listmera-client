@@ -1,0 +1,82 @@
+@import '../../index'
+@import '../base/variables.sass'
+
+.create_wrapper
+  +flex()
+  padding: 60px
+
+.create_userform
+  +flex($direction: column, $justify: space-between, $align: flex-start)
+  margin-left: 40px
+  margin-bottom: 15px
+  input[type='text']
+    outline: none
+    font-family: $font
+    font-weight: $regular
+    color: $font-color
+    font-size: 1em
+    border: 0
+    height: 5vh
+    width: 50%
+    background-color: rgba(0, 0, 0, 0)
+    border-bottom: 1px solid white
+  h2
+    margin-bottom: 0px
+    font-size: 1.2em
+    font-weight: $regular
+  input[type="range"]
+    -webkit-appearance: none
+    margin-bottom: 20px
+    border: none
+    &::-webkit-slider-runnable-track
+      height: 3px
+      background: #DDDDDD
+      border-radius: 3px
+    &::-webkit-slider-thumb
+      -webkit-appearance: none
+      height: 15px
+      width: 15px
+      border-radius: 100%
+      border: 3px solid $spotify-green
+      background: $background
+      margin-top: -6px
+    &:focus
+      outline: none
+    &:focus::-webkit-slider-runnable-track
+      background: #ccc
+
+.selector_wrap
+  margin-top: 6px
+
+.slider_wrap
+  +flex($justify: space-around, $align: center)
+  margin-top: 10px
+  display: flex
+  height: 5vh
+  width: 30vw
+  p
+    margin-bottom: 35px
+
+.slider
+  width: 20vw
+
+.type_selector
+  height: 7vh
+  width: 10vw
+  border: 1px solid $spotify-green
+  border-radius: 10px
+  margin: 5px
+  background-color: rgba(0, 0, 0, 0)
+  font-size: 1em
+  font-weight: $light
+  cursor: pointer
+
+.selected
+  background-color: $spotify-green
+
+.create_button
+  width: 6vw
+  height: 6vh
+  text-transform: uppercase
+  font-weight: $light
+  font-size: .8em

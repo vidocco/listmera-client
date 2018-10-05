@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import '../App.css';
-
 import { connect } from 'react-redux';
-
 import { Link } from 'react-router-dom';
+
+import '../stylesheets/components/Banner.sass'
 
 class Banner extends Component {
 
-  //========================================= RENDERING
+    redirect() {
+    window.location.href = process.env.REACT_APP_API_URL + '/access';
+  }
 
+  //========================================= RENDERING
   renderButton(user) {
     if (user) {
       return (
         <Link to="/create">
-          <button className="Create">LET'S DO THIS</button>
+          <button className="banner_create">LET'S DO THIS!</button>
         </Link>
       )
-    } else {
+  } else {
       return (
-        <Link to="/access">
-          <button className="Create">LOGIN TO CREATE</button>
-        </Link>
+        <button className="banner_create" onClick={this.redirect}>LOGIN TO CREATE</button>
       )
     }
   }
@@ -28,8 +28,8 @@ class Banner extends Component {
   render() {
     const button = this.renderButton(this.props.user.username)
     return (
-      <div className="Banner">
-        <div className="BannerOverlay">
+      <div className="banner">
+        <div className="banner_overlay">
           <h1>Create a combined playlist</h1>
           {button}
         </div>

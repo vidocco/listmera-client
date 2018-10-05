@@ -1,0 +1,24 @@
+@import '../../index'
+@import '../../stylesheets/base/variables.sass'
+
+a, a:visited
+  text-decoration: none
+
+.top_playlist_wrap
+  +flex($direction: row, $justify: center)
+  margin: 0 auto
+  width: 100%
+
+.top_playlist_width
+  margin: auto;
+
+.top_playlist_wrap_title
+  width: 100%
+  text-align: center
+  margin-bottom: 10px
+  h1
+    font-weight: $regular
+    font-size: 2em
+
+.top_playlist_list
+  +flex($direction: row, $justify: center, $wrap: wrap)

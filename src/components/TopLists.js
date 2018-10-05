@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import '../App.css';
-
 import { Link } from 'react-router-dom';
 
+import '../stylesheets/components/TopList.sass';
 import TopItem from './TopItem';
 
 class TopLists extends Component {
 
   //========================================= RENDERING
-
   formatFilters(playlist) {
     let res = [];
     if (playlist.dance) res.push(playlist.dance);
@@ -26,8 +24,8 @@ class TopLists extends Component {
     return this.props.content.map((el, i) => {
       const filters = this.formatFilters(el);
       return (
-        <Link key={i} style={{ textDecoration: 'none' }} to={`/playlist/${el.id}`}>
-          <TopItem cover={el.cover ? el.cover : require('../assets/music-albums.png')}
+        <Link key={i} to={`/playlist/${el.id}`}>
+          <TopItem cover={el.cover ? el.cover : []}
             title={el.name}
             songs={el.length}
             genres={filters}
@@ -42,15 +40,15 @@ class TopLists extends Component {
   render() {
     const playlists = this.renderPlaylists();
     return (
-      <div className="TopPlaylistWrap">
-        <div className="MaxWidthList">
-          <div className="Title">
-            <h1>{this.props.title}</h1>
+      <div className="top_playlist_wrap">
+          <div className='top_playlist_width'>
+            <div className="top_playlist_wrap_title">
+              <h1>{this.props.title}</h1>
+            </div>
+            <div className="top_playlist_list">
+              {playlists}
+            </div>
           </div>
-          <div className="TopPlaylistList">
-            {playlists}
-          </div>
-        </div>
       </div>
     );
   }
