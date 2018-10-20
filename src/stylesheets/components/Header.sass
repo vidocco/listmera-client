@@ -1,0 +1,73 @@
+@import '../../index'
+@import '../../stylesheets/base/variables.sass'
+
+// ========== LOG IN
+.header_profile_login
+  width: 10vw
+  height: 6vh
+  font-size: .6em
+  font-weight: $medium
+  background-color: rgba(0, 0, 0, 0.2)
+  margin: 5px 10px
+  .header_profile_login_text
+    padding: 10px
+    color: $font-color
+    line-height: 2em
+
+// ====== PROFILE
+.header_profile
+  @extend .header_profile_login
+  +flex()
+  a:link, a:visited, a:hover, a:active
+    text-decoration: none
+    color: $font-color
+
+.header_profile_img_wrapper
+  +flex($direction: row, $justify: flex-start, $align: center)
+  height: 100%
+  padding: 0px 10px
+  .header_profile_img
+    border-radius: 50%
+    width: 2vw
+
+.header_profile_name_wrapper
+  +flex($direction: row, $justify: flex-start, $align: center)
+  font-weight: $bold
+
+// ========== NAV BAR
+.navbar
+  +flex($direction: row, $justify: space-around, $align: center)
+  height: 6vh
+  width: 100%
+  position: fixed
+  z-index: 3
+
+.navbar_search
+  +flex($direction: row, $justify: space-around, $align: center)
+  margin-left: -28vw
+
+.navbar_right
+  +flex($direction: row, $justify: center, $align: center)
+  margin-right: -28vw
+
+.navbar_wrapper_logotype_img
+  width: 2vw
+  margin-right: 10px
+
+// ========== SEARCH BAR
+.search_bar
+  height: 3vh
+  width: 20vw
+  background-color: transparent
+  border: none
+  padding: 5px
+  color: $font-color
+  input[type='text']
+  background-image: url(../../assets/magnifier.svg)
+  background-repeat: no-repeat
+  background-position: 10px;
+  background-size: 6%
+  padding-left: 40px
+  opacity: 0.4
+  &:focus
+    outline: 0

@@ -1,0 +1,16 @@
+@import '../../index'
+@import '../base/variables.sass'
+@import '../components/Banner.sass'
+
+.acces_wrapper
+  +flex($direction: column)
+
+.acces_wrapper_info
+  text-align: center
+  h1
+    padding-top: 60px
+  h2
+    font-weight: $regular
+
+.create
+  @extend .banner_create

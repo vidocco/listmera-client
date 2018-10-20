@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import '../App.css';
-
+import '../stylesheets/containers/Profile.sass';
 import { connect } from 'react-redux';
-import { logout } from '../actions'
 
-import Header from '../components/Header';
 import Loader from '../components/Loader';
 import TopLists from '../components/TopLists';
 
@@ -17,66 +14,64 @@ class Profile extends Component {
     } else {
       const headers = new Headers({
         User: user.username,
-        Origin: 'http://listmera.rocks',
-      })
-      fetch('https://listmera.herokuapp.com/api/me', {
+        Origin: process.env.REACT_APP_CLIENT_URL
+      });
+      fetch(process.env.REACT_APP_API_URL + '/me', {
         method: 'GET',
         headers: headers
-      }).then(res => res.json())
+      })
+        .then(res => res.json())
         .then(res => {
           this.setState({
             ...res,
-            loaded: true,
+            loaded: true
           });
         })
         .catch(e => console.error(e));
     }
   }
 
-  logout = () => {
-    window.localStorage.removeItem('user');
-    this.props.logout();
-    window.location = '/';
-  }
-
   //========================================= RENDERING
-
   renderProfile(state) {
     if (state) {
       return (
-        <div className="MaxWidthCreate">
-          <div className="ProfileWrapper">
-            <div className="ProfileImage">
-              <img alt="you" className="WelcomePicture" src={this.state.picture}/>
+        <div className='profile'>
+          <div className='profile_user'>
+            <div className= 'profile_user_info'>
+              <img alt="you"
+                  className="profile_user_info_img"
+                  src={this.props.user.picture} />
             </div>
-            <div className="ProfileDetails">
-              <h3>Name: {this.state.name}</h3>
-              <h3>e-mail: {this.state.email}</h3>
-              <h3>Username: {this.state.username}</h3>
-              <a onClick={this.logout}><p>log out</p></a>
+
+            <div className='profile_user_info_name'>
+              <h5>USER</h5>
+              <h3>{this.state.name}</h3>
             </div>
           </div>
-          <TopLists content={this.state.adminOf} title="Your Playlists"/>
+
+          <div className='profile_playlist'>
+            <TopLists content={this.state.adminOf}
+              title='Your playlists 🎧' />
+          </div>
         </div>
-      )
+      );
     } else {
-      return <Loader />
+      return <Loader />;
     }
   }
 
   render() {
     const profile = this.renderProfile(this.state);
     return (
-      <div className="Wrapper">
-        <Header />
+      <div className="wrapper">
         {profile}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(logout()),
+const mapStateToProps = (state) => ({
+  user: state,
 })
 
-export default connect(null, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, null)(Profile);

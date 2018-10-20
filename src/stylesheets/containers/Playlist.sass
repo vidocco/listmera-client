@@ -1,0 +1,89 @@
+@import '../../index'
+@import '../base/variables.sass'
+@import '../components/Loader.sass'
+
+.render_content
+  padding: 40px
+  text-align: center
+  .render_content_title
+    +flex($justify: space-between, $align: center)
+    height: 90px
+    width: 80%
+    margin: auto
+    margin-bottom: 0
+
+.playlist_title
+  height: 100%
+  text-align: left
+  h1
+  font-weight: 300
+  margin-bottom: -2px
+  p
+  color: rgb(90, 90, 90)
+  padding-bottom: 8vh
+
+// ========== BUTTONS
+button
+  height: 5vh
+  width: 10vw
+  border: none
+  border-radius: 5px
+  background-color: $spotify-green
+  cursor: pointer
+  font-size: 1em
+  font-weight: $regular
+  cursor: pointer
+  color: $font-color
+.collaborate
+  @extend button
+
+.generate
+  @extend button
+
+.clicked
+  @extend button
+  transition: background-color 0.5s
+  background-color: grey
+
+.generate_button
+  @extend button
+
+.delete
+  height: 5vh
+  width: 3vw
+  background-color: $background
+
+.playlist_manage
+  +flex($align: center)
+
+.inactive_button
+  cursor: default
+
+.delete_img
+  display: block
+  margin-left: auto
+  margin-right: auto
+  width: 80%
+
+.more_songs
+  height: 100%
+  color: $darkgrey
+
+//========== NEED BACK-END WORKING FOR THIS REFACTORING
+.EasterEgg
+  font-size: 9px
+
+.Error
+  text-align: center
+  margin-top: 70px
+
+.TrackWrapper
+  display: flex
+  flex-direction: column
+  width: 100%
+  align-items: center
+  justify-content: center
+
+.Collabed
+  background-color: grey
+  cursor: default

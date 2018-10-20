@@ -1,0 +1,30 @@
+@import '../../index'
+@import '../../stylesheets/base/variables.sass'
+
+.banner_create
+  height: 10vh
+  width: 15vw
+  border: none
+  border-radius: 10px
+  background-color: $spotify-green
+  font-size: 1em
+  font-weight: $light
+  cursor: pointer
+  color: $font-color
+
+.banner
+  background-image: url(https://media.timeout.com/images/102503695/image.jpg)
+  background-repeat: no-repeat
+  background-position: bottom
+  background-attachment: fixed
+  background-size: cover
+  width: 100%
+  height: 100vh
+
+.banner_overlay
+  +flex($direction: column, $justify: center, $align: center)
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, 0.6)
+  h1
+    font-size: 4em

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../stylesheets/containers/Main.sass';
 
 import Header from '../components/Header';
 import Loader from '../components/Loader';
@@ -9,35 +9,34 @@ import TopLists from '../components/TopLists';
 class Main extends Component {
   constructor(props) {
     super(props);
-    fetch('https://listmera.herokuapp.com/api/playlists/recent', {
-      header: {
-        'Origin': 'http://listmera.rocks',
+    fetch(process.env.REACT_APP_API_URL + '/playlists/recent', {
+      headers: {
+        Origin: process.env.REACT_APP_CLIENT_URL
       }
     })
       .then(res => res.json())
       .then(res => {
         this.setState({
-          ...res,
-        })
+          ...res
+        });
       })
       .catch(e => console.error(e));
   }
 
   //========================================= RENDERING
-
   renderTopLists(state) {
     if (state) {
-      return <TopLists content={this.state.playlists} title="Recently Created Playlists" />
+      return <TopLists content={this.state.playlists} title="Recently created playlists 🚀" />;
     } else {
-      return <Loader />
+      return <Loader />;
     }
   }
 
   render() {
     const lists = this.renderTopLists(this.state);
     return (
-      <div className="Wrapper">
-        <Header />
+      <div className="wrapper">
+        {/* <Header /> */}
         <Banner />
         {lists}
       </div>

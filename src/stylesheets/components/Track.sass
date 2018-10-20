@@ -1,0 +1,32 @@
+@import '../../index'
+@import '../../stylesheets/base/variables.sass'
+
+.track
+  +flex($justify: flex-start)
+  height: 14vh
+  width: 80%
+  background-color: rgba(0,0,0,0.5)
+  border: 1px solid rgba(0, 0, 0, 0.5)
+  border-bottom: none
+
+.track_imgwrap
+  +flex($justify: center, $align: center)
+  // height: 100%
+  width: 10%
+  overflow: hidden
+  flex-shrink: 0
+
+.track_cover
+  height: 80%
+  width: 80%
+
+.track_details
+  h3
+    text-align: left
+    font-weight: $regular
+    font-size: 1.2em
+    color: $font-color
+    margin-bottom: 2px
+  h5
+    color: rgb(90, 90, 90)
+    font-weight: $light
