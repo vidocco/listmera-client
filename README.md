@@ -1,6 +1,6 @@
-## listmera-client
+## myMusic
 
-Welcome to the Github repository for Listmera! Listmera is a platform to create true collaborative playlists for Spotify. Sign-up for the platform, create a playlist and invite your friends and Listmera will find the music you have in common and create a playlist based on that. There is a guarantee that any Listmera playlist used at a party will have at least 1 song for everyone (or everytwo).
+Welcome to the Github repository for myMusic!  myMusic is a platform to create true collaborative playlists for Spotify. Sign-up for the platform, create a playlist and invite your friends and Listmera will find the music you have in common and create a playlist based on that. There is a guarantee that any Listmera playlist used at a party will have at least 1 song for everyone (or everytwo).
 
 
 ## Screenshots
